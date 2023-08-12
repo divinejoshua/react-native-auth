@@ -4,8 +4,9 @@ import Onboarding from 'react-native-onboarding-swiper';
 import React from 'react'
 import Lottie from 'lottie-react-native';
 import { StatusBar } from 'expo-status-bar';
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { router } from 'expo-router';
 
 
 const {width, height} = Dimensions.get('window');
@@ -20,14 +21,23 @@ export default function OnboardingScreen() {
             <Text style={{color : "#fff", fontWeight : '500'}}>Done</Text>
         </TouchableOpacity>
     )
-    
 }
+
+
+  // Handle done button click 
+  const handleDone = ()=>{
+    router.replace('/index')
+    // setItem('onboarded', '1');
+  }
+  
+
 
 
   return (
     <>
-    {/* <StatusBar hidden={true} /> */}
         <Onboarding
+          onDone={handleDone}
+          onSkip={handleDone}
           containerStyles={{padding: 30}}
           // bottomBarColor={'transparent'}
           bottomBarHighlight={false}
@@ -38,9 +48,10 @@ export default function OnboardingScreen() {
             {
               backgroundColor: '#fff',
               image: (
-                <View style={styles.lottie}>
-                    <Lottie style={{backgroundColor : '#fff'}}  source={require('../assets/images/two.json')} autoPlay loop />
-                </View>
+                // <View style={styles.lottie}>
+                  <Image source={require('../assets/images/one.jpg')} />
+                    // {/* <Lottie style={{backgroundColor : '#fff'}}  source={require('../assets/images/two.json')} autoPlay loop /> */}
+                // </View>
               ),
 
               title: 'Cloudiby',
@@ -52,10 +63,8 @@ export default function OnboardingScreen() {
             {
               backgroundColor: '#fff',
               image: (
-                <View style={styles.lottie}>
-                    <Lottie  style={{backgroundColor : '#fff'}}  source={require('../assets/images/three.json')} autoPlay loop />
-                </View>
-              ),
+                    <Image source={require('../assets/images/two.jpg')} />
+                ),
 
               title: 'Communicate',
               subtitle: 'Most stress free communication with team members and friends using our inbox feature.',
@@ -65,9 +74,7 @@ export default function OnboardingScreen() {
             {
               backgroundColor: '#fff',
               image: (
-                <View style={styles.lottie}>
-                    <Lottie style={{backgroundColor : '#fff'}} source={require('../assets/images/one.json')} autoPlay loop />
-                </View>
+                <Image source={require('../assets/images/three.jpg')} />
               ),
 
               title: 'Share',
@@ -78,9 +85,7 @@ export default function OnboardingScreen() {
             {
               backgroundColor: '#fff',
               image: (
-                <View style={styles.lottie}>
-                    <Lottie style={{backgroundColor : '#fff'}} source={require('../assets/images/three.json')} autoPlay loop />
-                </View>
+                <Image source={require('../assets/images/four.jpg')} />
               ),
 
               title: 'Security',
@@ -90,11 +95,13 @@ export default function OnboardingScreen() {
 
           titleStyles={{
             fontWeight: '500',
-            color: '#172554',
+
           }}
           subTitleStyles={{
             paddingHorizontal: 10,
             letterSpacing: .2,
+            fontWeight: '300',
+            fontSize: 17,
             color: '#999',
 
           }}
@@ -112,10 +119,10 @@ const styles = StyleSheet.create({
       flex: 1,
       // backgroundColor: 'white'
   },
-  lottie:{
-      width: width*0.9,
-      height: width,
-  },
+  // lottie:{
+  //     width: width*0.9,
+  //     height: width,
+  // },
   doneButton: {
       paddingVertical: 20,
       paddingHorizontal : 40,
@@ -123,6 +130,5 @@ const styles = StyleSheet.create({
       backgroundColor: '#121212',
       borderTopLeftRadius : 100,
       borderBottomLeftRadius : 100,
-      // marginRight :10,
   }
 })
