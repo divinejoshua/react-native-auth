@@ -27,7 +27,7 @@ export default function OnboardingScreen() {
 
 // Handle done button click 
   const handleDone = ()=>{
-    router.replace('/two')
+    router.replace('/index')
     setItem('onboarded', '1');
   }
   

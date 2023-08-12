@@ -19,7 +19,7 @@ export default function TabOneScreen() {
             <Text style={{color : "#fff", fontWeight : '700'}}>Clear Async storage</Text>
         </TouchableOpacity>
 
-      <Text>By clearing async storage, you will be able to see the onboarding screen again</Text>
+      <Text style={{ padding : 20, textAlign : 'center'}}>By clearing async storage, you will be able to see the onboarding screen again</Text>
 
     </View>
   );
