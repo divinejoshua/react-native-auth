@@ -49,9 +49,9 @@ export default function OnboardingScreen() {
               backgroundColor: '#fff',
               image: (
                 // <View style={styles.lottie}>
-                  <Image source={require('../assets/images/one.jpg')} />
-                    // {/* <Lottie style={{backgroundColor : '#fff'}}  source={require('../assets/images/two.json')} autoPlay loop /> */}
-                // </View>
+                    <Image style={styles.images} source={require('../assets/images/one.jpg')} />
+                    //  <Lottie style={{backgroundColor : '#fff'}}  source={require('../assets/images/two.json')} autoPlay loop />
+                //  </View>
               ),
 
               title: 'Cloudiby',
@@ -63,7 +63,7 @@ export default function OnboardingScreen() {
             {
               backgroundColor: '#fff',
               image: (
-                    <Image source={require('../assets/images/two.jpg')} />
+                    <Image style={styles.images} source={require('../assets/images/two.jpg')} />
                 ),
 
               title: 'Communicate',
@@ -74,7 +74,7 @@ export default function OnboardingScreen() {
             {
               backgroundColor: '#fff',
               image: (
-                <Image source={require('../assets/images/three.jpg')} />
+                <Image style={styles.images} source={require('../assets/images/three.jpg')} />
               ),
 
               title: 'Share',
@@ -85,7 +85,7 @@ export default function OnboardingScreen() {
             {
               backgroundColor: '#fff',
               image: (
-                <Image source={require('../assets/images/four.jpg')} />
+                <Image style={styles.images} source={require('../assets/images/four.jpg')} /> 
               ),
 
               title: 'Security',
@@ -119,10 +119,15 @@ const styles = StyleSheet.create({
       flex: 1,
       // backgroundColor: 'white'
   },
-  // lottie:{
-  //     width: width*0.9,
-  //     height: width,
-  // },
+  lottie:{
+      width: width*0.9,
+      height: width,
+  },
+
+  images:{
+    width : 140, 
+    height : 140,
+  },
   doneButton: {
       paddingVertical: 20,
       paddingHorizontal : 40,
