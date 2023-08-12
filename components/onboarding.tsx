@@ -18,7 +18,7 @@ export default function OnboardingScreen() {
   const doneButton = ({...props})=>{
     return (
         <TouchableOpacity style={styles.doneButton} {...props}>
-            <Text style={{color : "#fff", fontWeight : '500'}}>Done</Text>
+            <Text style={{color : "#fff", fontWeight : '700'}}>Done</Text>
         </TouchableOpacity>
     )
 }
@@ -132,8 +132,11 @@ const styles = StyleSheet.create({
       paddingVertical: 20,
       paddingHorizontal : 40,
       color: '#fff',
-      backgroundColor: '#121212',
-      borderTopLeftRadius : 100,
-      borderBottomLeftRadius : 100,
+      backgroundColor: '#3b82f6',
+      marginRight : 20,
+      // borderTopLeftRadius : 100,
+      borderRadius : 100,
+      // borderTopLeftRadius : 100,
+      // borderBottomLeftRadius : 100,
   }
 })
