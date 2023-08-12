@@ -22,10 +22,10 @@ export default function OnboardingScreen() {
             <Text style={{color : "#fff", fontWeight : '700'}}>Done</Text>
         </TouchableOpacity>
     )
-}
+  }
 
 
-  // Handle done button click 
+// Handle done button click 
   const handleDone = ()=>{
     router.replace('/two')
     setItem('onboarded', '1');

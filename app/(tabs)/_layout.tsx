@@ -31,6 +31,8 @@ export default function TabLayout() {
     let onboarded = await getItem('onboarded');
     if(onboarded!=='1'){
       router.replace('/onboarding')
+      } else {
+        return null
       }
   }
   useEffect(()=>{
