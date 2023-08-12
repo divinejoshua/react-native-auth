@@ -25,6 +25,7 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
 
+  // Data 
   const [showOnboarding, setShowOnboarding] = useState<boolean|null>(null);
 
   // Color scheme 
