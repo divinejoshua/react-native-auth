@@ -9,7 +9,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { router } from 'expo-router';
 import { setItem } from '../utils/asyncStorage';
 
-
 const {width, height} = Dimensions.get('window');
 
 
@@ -27,7 +26,11 @@ export default function OnboardingScreen() {
 
 // Handle done button click 
   const handleDone = ()=>{
-    router.replace('/index')
+
+    // Move to home page 
+    router.replace('/')
+
+    // Set onboarded to '1' in async storage 
     setItem('onboarded', '1');
   }
   
