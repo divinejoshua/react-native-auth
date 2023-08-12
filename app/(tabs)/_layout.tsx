@@ -4,6 +4,13 @@ import { Pressable, useColorScheme } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
+import { Redirect, router } from 'expo-router';
+import { useLayoutEffect, useState } from 'react';
+import { Text, View } from '../../components/Themed';
+
+import OnboardingScreen from '../../components/onboarding';
+
+
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
@@ -15,6 +22,19 @@ function TabBarIcon(props: {
 }
 
 export default function TabLayout() {
+
+
+  // Handle onboarding 
+  // If the user is opening app for the very first time 
+  const [isOnboarding, setisOnboarding] = useState<Boolean>(true)
+  if (isOnboarding) {
+    return (
+      <OnboardingScreen/>
+    )
+  }
+
+
+    // Color scheme 
   const colorScheme = useColorScheme();
 
   return (
