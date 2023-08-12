@@ -15,12 +15,42 @@ export default function OnboardingScreen() {
     <>
     <StatusBar hidden={true} />
         <Onboarding
+          containerStyles={{paddingHorizontal: 15}}
           pages={[
+
+            // Slider one 
+            {
+              backgroundColor: '#fecaca',
+              image: (
+                <View style={styles.lottie}>
+                    <Lottie source={require('../assets/images/one.json')} autoPlay loop />
+                </View>
+              ),
+
+              title: 'Onboarding',
+              subtitle: 'Welcome to Cloudiby, we help you store and manage your files the 21st century way.',
+            },
+
+
+            // Slider two 
             {
               backgroundColor: '#fff',
               image: (
                 <View style={styles.lottie}>
-                    <Lottie source={require('../assets/animations/boost.json')} autoPlay loop />
+                    <Lottie source={require('../assets/images/two.json')} autoPlay loop />
+                </View>
+              ),
+
+              title: 'Onboarding',
+              subtitle: 'Welcome to Cloudiby, we help you store and manage your files the 21st century way.',
+            },
+
+            // Slider three
+            {
+              backgroundColor: '#fff',
+              image: (
+                <View style={styles.lottie}>
+                    <Lottie source={require('../assets/images/three.json')} autoPlay loop />
                 </View>
               ),
 
@@ -33,7 +63,6 @@ export default function OnboardingScreen() {
             // color: '#fff',
           }}
           subTitleStyles={{
-            textAlign: 'left',
             paddingHorizontal: 10
 
           }}
@@ -53,7 +82,7 @@ const styles = StyleSheet.create({
   },
   lottie:{
       width: width*0.9,
-      height: width
+      height: width,
   },
   doneButton: {
       padding: 20,
