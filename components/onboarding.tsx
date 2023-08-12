@@ -16,14 +16,16 @@ export default function OnboardingScreen() {
     <StatusBar hidden={true} />
         <Onboarding
           containerStyles={{paddingHorizontal: 15}}
+          bottomBarColor={'transparent'}
+          bottomBarHighlight={false}
           pages={[
 
             // Slider one 
             {
-              backgroundColor: '#fecaca',
+              backgroundColor: '#fff',
               image: (
                 <View style={styles.lottie}>
-                    <Lottie source={require('../assets/images/one.json')} autoPlay loop />
+                    <Lottie style={{backgroundColor : '#fff'}}  source={require('../assets/images/two.json')} autoPlay loop />
                 </View>
               ),
 
@@ -37,7 +39,7 @@ export default function OnboardingScreen() {
               backgroundColor: '#fff',
               image: (
                 <View style={styles.lottie}>
-                    <Lottie source={require('../assets/images/two.json')} autoPlay loop />
+                    <Lottie  style={{backgroundColor : '#fff'}}  source={require('../assets/images/three.json')} autoPlay loop />
                 </View>
               ),
 
@@ -50,7 +52,20 @@ export default function OnboardingScreen() {
               backgroundColor: '#fff',
               image: (
                 <View style={styles.lottie}>
-                    <Lottie source={require('../assets/images/three.json')} autoPlay loop />
+                    <Lottie style={{backgroundColor : '#fff'}} source={require('../assets/images/one.json')} autoPlay loop />
+                </View>
+              ),
+
+              title: 'Onboarding',
+              subtitle: 'Welcome to Cloudiby, we help you store and manage your files the 21st century way.',
+            },
+
+            // Slider four
+            {
+              backgroundColor: '#fff',
+              image: (
+                <View style={styles.lottie}>
+                    <Lottie style={{backgroundColor : '#fff'}} source={require('../assets/images/three.json')} autoPlay loop />
                 </View>
               ),
 
@@ -78,7 +93,7 @@ export default function OnboardingScreen() {
 const styles = StyleSheet.create({
   container: {
       flex: 1,
-      backgroundColor: 'white'
+      // backgroundColor: 'white'
   },
   lottie:{
       width: width*0.9,
@@ -86,7 +101,7 @@ const styles = StyleSheet.create({
   },
   doneButton: {
       padding: 20,
-      // backgroundColor: 'white',
+      backgroundColor: 'white',
       // borderTopLeftRadius: '100%',
       // borderBottomLeftRadius: '100%'
   }
