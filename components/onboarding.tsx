@@ -5,19 +5,33 @@ import React from 'react'
 import Lottie from 'lottie-react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Dimensions, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const {width, height} = Dimensions.get('window');
 
 
 export default function OnboardingScreen() {
+
+  // done button component 
+  const doneButton = ({...props})=>{
+    return (
+        <TouchableOpacity style={styles.doneButton} {...props}>
+            <Text style={{color : "#fff", fontWeight : '500'}}>Done</Text>
+        </TouchableOpacity>
+    )
+    
+}
+
+
   return (
     <>
-    <StatusBar hidden={true} />
+    {/* <StatusBar hidden={true} /> */}
         <Onboarding
-          containerStyles={{paddingHorizontal: 15}}
-          bottomBarColor={'transparent'}
+          containerStyles={{padding: 30}}
+          // bottomBarColor={'transparent'}
           bottomBarHighlight={false}
+          DoneButtonComponent={doneButton}
           pages={[
 
             // Slider one 
@@ -29,7 +43,7 @@ export default function OnboardingScreen() {
                 </View>
               ),
 
-              title: 'Onboarding',
+              title: 'Cloudiby',
               subtitle: 'Welcome to Cloudiby, we help you store and manage your files the 21st century way.',
             },
 
@@ -43,8 +57,8 @@ export default function OnboardingScreen() {
                 </View>
               ),
 
-              title: 'Onboarding',
-              subtitle: 'Welcome to Cloudiby, we help you store and manage your files the 21st century way.',
+              title: 'Communicate',
+              subtitle: 'Most stress free communication with team members and friends using our inbox feature.',
             },
 
             // Slider three
@@ -56,8 +70,8 @@ export default function OnboardingScreen() {
                 </View>
               ),
 
-              title: 'Onboarding',
-              subtitle: 'Welcome to Cloudiby, we help you store and manage your files the 21st century way.',
+              title: 'Share',
+              subtitle: 'Share your pictures, videos, audio files or documents with ease to anyone, anywhere in the world.',
             },
 
             // Slider four
@@ -69,16 +83,19 @@ export default function OnboardingScreen() {
                 </View>
               ),
 
-              title: 'Onboarding',
-              subtitle: 'Welcome to Cloudiby, we help you store and manage your files the 21st century way.',
+              title: 'Security',
+              subtitle: 'Your files are most secure and easily accessibly anywhere, from any device',
             },
           ]}
 
           titleStyles={{
-            // color: '#fff',
+            fontWeight: '500',
+            color: '#172554',
           }}
           subTitleStyles={{
-            paddingHorizontal: 10
+            paddingHorizontal: 10,
+            letterSpacing: .2,
+            color: '#999',
 
           }}
           imageContainerStyles={{
@@ -100,9 +117,12 @@ const styles = StyleSheet.create({
       height: width,
   },
   doneButton: {
-      padding: 20,
-      backgroundColor: 'white',
-      // borderTopLeftRadius: '100%',
-      // borderBottomLeftRadius: '100%'
+      paddingVertical: 20,
+      paddingHorizontal : 40,
+      color: '#fff',
+      backgroundColor: '#121212',
+      borderTopLeftRadius : 100,
+      borderBottomLeftRadius : 100,
+      // marginRight :10,
   }
 })
