@@ -136,11 +136,8 @@ const styles = StyleSheet.create({
       paddingVertical: 20,
       paddingHorizontal : 40,
       color: '#fff',
-      backgroundColor: '#3b82f6',
-      marginRight : 20,
-      // borderTopLeftRadius : 100,
+      backgroundColor: '#2563eb',
+      marginRight : 15,
       borderRadius : 100,
-      // borderTopLeftRadius : 100,
-      // borderBottomLeftRadius : 100,
   }
 })
