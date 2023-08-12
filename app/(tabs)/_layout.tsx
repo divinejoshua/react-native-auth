@@ -4,11 +4,10 @@ import { Pressable, useColorScheme } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
-import { Redirect, router } from 'expo-router';
-import { useLayoutEffect, useState } from 'react';
-import { Text, View } from '../../components/Themed';
+import { router } from 'expo-router';
+import { useEffect } from 'react';
 
-import OnboardingScreen from '../../components/onboarding';
+import { getItem } from '../../utils/asyncStorage';
 
 
 /**
@@ -23,19 +22,22 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
 
-
-  // Handle onboarding 
-  // If the user is opening app for the very first time 
-  const [isOnboarding, setisOnboarding] = useState<Boolean>(true)
-  if (isOnboarding) {
-    return (
-      <OnboardingScreen/>
-    )
-  }
-
-
-    // Color scheme 
+  // Color scheme 
   const colorScheme = useColorScheme();
+
+
+  // Check if the user is already onboarded 
+  const checkIfAlreadyOnboarded = async ()=>{
+    let onboarded = await getItem('onboarded');
+    if(onboarded!=='1'){
+      router.replace('/onboarding')
+      }
+  }
+  useEffect(()=>{
+    checkIfAlreadyOnboarded();
+  },[])
+
+
 
   return (
     <Tabs

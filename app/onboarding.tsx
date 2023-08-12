@@ -7,6 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Dimensions, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { router } from 'expo-router';
+import { setItem } from '../utils/asyncStorage';
 
 
 const {width, height} = Dimensions.get('window');
@@ -26,8 +27,8 @@ export default function OnboardingScreen() {
 
   // Handle done button click 
   const handleDone = ()=>{
-    router.replace('/index')
-    // setItem('onboarded', '1');
+    router.replace('/two')
+    setItem('onboarded', '1');
   }
   
 
