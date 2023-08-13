@@ -72,10 +72,10 @@ const styles = StyleSheet.create({
   },
 
   regularText:{
-    marginTop : 10,
-    fontSize:16,
+    marginTop : 15,
+    fontSize:17,
     letterSpacing:.3,
-    color : "#efefef"
+    color : "#ffffff"
   },
 
   actionButton : {

@@ -31,7 +31,7 @@ export default function OnboardingScreen() {
     router.replace('/accounts/getstarted')
 
     // Set onboarded to '1' in async storage 
-    // setItem('onboarded', '1');
+    setItem('onboarded', '1');
   }
   
 
