@@ -1,5 +1,6 @@
 import { ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import { View, Text } from '../../components/Themed';
+import { router } from 'expo-router';
 
 
 export default function GetStartedScreen() {
@@ -21,14 +22,14 @@ export default function GetStartedScreen() {
           <Text style={styles.regularText}>Discover, Connect and Visit every part of the world with Wetrospace.</Text>
 
           {/* Get started button  */}
-          <TouchableOpacity style={styles.actionButton}>
+          <TouchableOpacity style={styles.actionButton} onPress={()=> router.push('/')}>
             <Text style={styles.actionButtonText}>Get started</Text>
           </TouchableOpacity>
 
         {/* Register text  */}
           <View style={styles.registerView}>
-            <Text>Haven't registered yet,</Text>
-            <Text>Register here</Text>
+            <Text style={styles.registerText}>Haven't registered yet,</Text>
+            <Text style={styles.registerLink}> register here</Text>
           </View>
 
         </View>
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 25,
     lineHeight: 84,
-    fontWeight: '600',
+    fontWeight: '700',
     // textAlign: 'center',
   },
 
@@ -96,7 +97,25 @@ const styles = StyleSheet.create({
   registerView: {
     flexDirection: 'row',
     backgroundColor :'transparent',
-    marginTop : 15
+    justifyContent : 'center',
+    alignContent: 'center',
+    marginTop : 15,
+    marginBottom : 30,
+  },
+
+  registerText:{
+    fontSize : 17,
+    color : '#fff',
+    letterSpacing:.3,
+    fontWeight : '500',
+
+  },
+
+  registerLink:{
+    fontSize : 17,
+    letterSpacing:.3,
+    color : '#3b82f6',
+    fontWeight : '500',
   }
 
 });
