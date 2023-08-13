@@ -22,8 +22,15 @@ export default function GetStartedScreen() {
 
           {/* Get started button  */}
           <TouchableOpacity style={styles.actionButton}>
-            <Text>Get started</Text>
+            <Text style={styles.actionButtonText}>Get started</Text>
           </TouchableOpacity>
+
+        {/* Register text  */}
+          <View style={styles.registerView}>
+            <Text>Haven't registered yet,</Text>
+            <Text>Register here</Text>
+          </View>
+
         </View>
     </ImageBackground>
     </View>
@@ -58,8 +65,8 @@ const styles = StyleSheet.create({
   },
 
   heroText: {
-    fontSize : 30,
-    fontWeight :'600',
+    fontSize : 35,
+    fontWeight :'700',
     color : '#fff'
   },
 
@@ -67,7 +74,7 @@ const styles = StyleSheet.create({
     marginTop : 10,
     fontSize:16,
     letterSpacing:.3,
-    color : "#ccc"
+    color : "#efefef"
   },
 
   actionButton : {
@@ -76,11 +83,20 @@ const styles = StyleSheet.create({
     height : 50,
     justifyContent : 'center',
     alignItems: 'center',
-    backgroundColor :'#3b82f6'
+    backgroundColor :'#3b82f6',
+    borderRadius : 100,
   },
 
   actionButtonText: {
-    
+    color : '#fff',
+    fontWeight : '600',
+    fontSize : 16,
+  },
+
+  registerView: {
+    flexDirection: 'row',
+    backgroundColor :'transparent',
+    marginTop : 15
   }
 
 });
