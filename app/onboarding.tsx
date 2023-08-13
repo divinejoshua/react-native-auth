@@ -18,7 +18,7 @@ export default function OnboardingScreen() {
   const doneButton = ({...props})=>{
     return (
         <TouchableOpacity style={styles.doneButton} {...props}>
-            <Text style={{color : "#fff", fontWeight : '700'}}>Done</Text>
+            <Text style={{color : "#fff", fontWeight : '700',}}>Done</Text>
         </TouchableOpacity>
     )
   }

@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 25,
     lineHeight: 84,
+    fontFamily : 'NunitoSansBold',
     fontWeight: '700',
     // textAlign: 'center',
   },
@@ -68,7 +69,9 @@ const styles = StyleSheet.create({
   heroText: {
     fontSize : 35,
     fontWeight :'700',
-    color : '#fff'
+    color : '#fff',
+    letterSpacing:-.5,
+    fontFamily : 'NunitoSansBold',
   },
 
   regularText:{
@@ -91,6 +94,7 @@ const styles = StyleSheet.create({
   actionButtonText: {
     color : '#fff',
     fontWeight : '600',
+    fontFamily : 'NunitoSansBold',
     fontSize : 16,
   },
 
@@ -108,6 +112,7 @@ const styles = StyleSheet.create({
     color : '#fff',
     letterSpacing:.3,
     fontWeight : '500',
+    fontFamily : 'NunitoSansBold',
 
   },
 
@@ -116,6 +121,7 @@ const styles = StyleSheet.create({
     letterSpacing:.3,
     color : '#3b82f6',
     fontWeight : '500',
+    fontFamily : 'NunitoSansBold',
   }
 
 });

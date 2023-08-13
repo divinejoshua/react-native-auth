@@ -22,6 +22,7 @@ export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
     NunitoSans: require('../assets/fonts/NunitoSans-Regular.ttf'),
+    NunitoSansBold: require('../assets/fonts/NunitoSans-Bold.ttf'),
     
     ...FontAwesome.font,
   });
