@@ -91,7 +91,6 @@ export default function OnboardingScreen() {
               image: (
                 <Image style={styles.images} source={require('../assets/images/four.jpg')} /> 
               ),
-
               title: 'Security',
               subtitle: 'Your files are most secure and easily accessibly anywhere, from any device',
             },
