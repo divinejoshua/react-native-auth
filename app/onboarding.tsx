@@ -28,10 +28,10 @@ export default function OnboardingScreen() {
   const handleDone = ()=>{
 
     // Move to home page 
-    router.replace('/')
+    router.replace('/accounts/getstarted')
 
     // Set onboarded to '1' in async storage 
-    setItem('onboarded', '1');
+    // setItem('onboarded', '1');
   }
   
 
