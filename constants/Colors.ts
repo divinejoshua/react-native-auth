@@ -8,7 +8,8 @@ export default {
     tint: tintColorLight,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorLight,
-    borderColor : '#fafafa',
+    backgroundMuted : '#fafafa',
+    borderColor : "#efefef",
     textMuted : "#888888",
   },
   dark: {
@@ -17,7 +18,8 @@ export default {
     tint: tintColorDark,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
-    borderColor : '#212121',
+    backgroundMuted : '#212121',
+    borderColor : "#efefef",
     textMuted : "#777777",
 
   },

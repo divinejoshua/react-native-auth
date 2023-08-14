@@ -31,6 +31,25 @@ const styles = StyleSheet.create({
         fontSize : 16,
         color : color,
     }),
+
+    form:{
+        marginTop : 20,
+    },
+
+    formLabel : {
+        fontSize : 18,
+        fontFamily : 'QuicksandSemiBold',
+        marginBottom : 10,
+    },
+
+    // @ts-ignore : true 
+    formControl : (borderColor : string) =>({
+        height : 50,
+        borderWidth : 1,
+        paddingHorizontal : 10,
+        borderRadius : 5,
+        borderColor : "#efefef",
+    })
 })
 
 export default styles;

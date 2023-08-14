@@ -1,9 +1,10 @@
-import { KeyboardAvoidingView, Platform, TouchableOpacity, useColorScheme } from 'react-native';
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
 import { SafeAreaView, Text, View } from '../../components/Themed'
 import styles from '../../constants/styles/accounts.style'
 import { Stack } from 'expo-router'
 import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
+import { TextInput } from 'react-native-gesture-handler';
 
 
 
@@ -37,7 +38,7 @@ export default function LoginScreen() {
         />
 
         {/* Main container  */}
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
           
           {/* Page title  */}
           <Text style={styles.pageTitle}>Login</Text>
@@ -47,11 +48,27 @@ export default function LoginScreen() {
           {/* Form  */}
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.form}
           >
+
+            {/* Email  */}
+            <Pressable>
+              <Text style={styles.formLabel}>Email </Text>
+              <TextInput
+                autoCapitalize="none"
+                autoComplete="email"
+                autoCorrect={false}
+                keyboardType="email-address"
+                returnKeyType="next"
+                //@ts-ignore : true
+                style={styles.formControl(borderColor)}
+                textContentType="username"
+              />
+            </Pressable>
 
           </KeyboardAvoidingView>
 
-        </View>
+        </ScrollView>
 
 
     </SafeAreaView>
