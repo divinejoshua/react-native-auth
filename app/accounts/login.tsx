@@ -138,6 +138,15 @@ export default function LoginScreen() {
 
               </View>
 
+               {/* Register text  */}
+              <View  style={styles.registerView}>
+
+                {/* @ts-ignore: true  */}
+                <Text style={styles.registerText(textMuted)}>Haven't registered yet?</Text>
+                <Text style={styles.registerLink}> Register</Text>
+              </View>
+
+
 
         </ScrollView>
 

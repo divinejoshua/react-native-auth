@@ -125,7 +125,30 @@ const styles = StyleSheet.create({
     
     btnText:{
         fontFamily : 'QuicksandSemiBold',
-    }
+    },
+
+    registerView: {
+        flexDirection: 'row',
+        backgroundColor :'transparent',
+        justifyContent : 'center',
+        alignContent: 'center',
+        marginTop : 40,
+        marginBottom : 30,
+      },
+    
+      //@ts-ignore:true
+      registerText: (color: string) =>({
+        fontSize : 16,
+        letterSpacing:.3,
+        color : color,
+    
+      }),
+    
+      registerLink:{
+        fontSize : 17,
+        letterSpacing:.3,
+        color : '#3b82f6',
+      }
 })
 
 export default styles;
