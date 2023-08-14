@@ -63,6 +63,8 @@ function RootLayoutNav() {
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+
+        {/* Accounts  */}
         <Stack.Screen name="accounts/getstarted" options={{ headerShown: false }} />
         <Stack.Screen name="accounts/onboarding" options={{ headerShown: false }} />
         <Stack.Screen name="accounts/login" options={{ headerShown: false }} />
