@@ -1,10 +1,14 @@
-import { View, Text } from 'react-native'
+import {  SafeAreaView } from 'react-native'
 import React from 'react'
+import { Text } from '../../components/Themed'
+
+
 
 export default function LoginScreen() {
   return (
-    <View>
+    <SafeAreaView>
+      {/* Page Title  */}
       <Text>LoginScreen</Text>
-    </View>
+    </SafeAreaView>
   )
 }
