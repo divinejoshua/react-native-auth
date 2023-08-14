@@ -132,7 +132,7 @@ export default function LoginScreen() {
                   {/* @ts-ignore:true  */}
                   <TouchableOpacity style={styles.socialsBtn(borderColor)}>
                     {/* @ts-ignore: true */}
-                    <Image source={require('../../assets/images/apple.png')} style={styles.socialIcon}/>
+                    <Image source={require('../../assets/images/facebook.png')} style={styles.socialIcon}/>
                     <Text>Apple</Text>
                   </TouchableOpacity>
 
