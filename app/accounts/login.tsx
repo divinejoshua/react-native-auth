@@ -1,10 +1,9 @@
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme, TextInput } from 'react-native';
 import { SafeAreaView, Text, View } from '../../components/Themed'
 import styles from '../../constants/styles/accounts.style'
 import { Stack } from 'expo-router'
 import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
-import { TextInput } from 'react-native-gesture-handler';
 import { useState } from 'react';
 
 
@@ -74,12 +73,14 @@ export default function LoginScreen() {
               <Text style={styles.formLabel}>Password </Text>
 
               <View style={styles.passwordView}>
-                {/* Eye icon  */}
+
+                {/* Show password icon  */}
                 <TouchableOpacity style={styles.showPasswordIcon} onPress={() => setshowPassword((prevValue) => !prevValue)}>
+
                   {showPassword ? 
-                    <Entypo name="eye-with-line" size={18} color="#bcbcbc" />
+                    <Entypo name="eye-with-line" size={18} color="#bcbcbc" /> //Show eye closed when showPassword is true
                     :
-                    <Entypo name="eye" size={18} color="#bcbcbc" />
+                    <Entypo name="eye" size={18} color="#bcbcbc" /> //Show eye open when showPassword is false
 
                   }
               </TouchableOpacity>
