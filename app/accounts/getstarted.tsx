@@ -17,7 +17,7 @@ export default function GetStartedScreen() {
         <Text style={styles.nameText}>Wetrospace</Text>
 
       {/* Bottom view  */}
-        <LinearGradient colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,0.5)']} style={styles.bottomView}>
+        <LinearGradient colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,0.7)']} style={styles.bottomView}>
 
           {/* Hero text  */}
           <Text style={styles.heroText}>Book a vacation with Wetrospace</Text>
@@ -30,8 +30,8 @@ export default function GetStartedScreen() {
 
         {/* Register text  */}
           <View  style={styles.registerView}>
-            <Text style={styles.registerText}>Haven't registered yet,</Text>
-            <Text style={styles.registerLink}> register here</Text>
+            <Text style={styles.registerText}>Find out more with us &copy;</Text>
+            <Text style={styles.registerLink}> Wetrospace</Text>
           </View>
 
         </LinearGradient>
@@ -88,13 +88,13 @@ const styles = StyleSheet.create({
     justifyContent : 'center',
     alignItems: 'center',
     backgroundColor :'#3b82f6',
-    borderRadius : 100,
+    borderRadius : 7,
   },
 
   actionButtonText: {
     color : '#fff',
     fontWeight : '600',
-    fontFamily : 'QuicksandSemiBold',
+    fontFamily : 'QuicksandBold',
     fontSize : 16,
   },
 
