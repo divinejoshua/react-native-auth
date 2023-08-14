@@ -12,7 +12,7 @@ export default function GetStartedScreen() {
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
 
         {/* App Name  */}
-        <Text style={styles.nameText}>Wetrospace</Text>
+        {/* <Text style={styles.nameText}>Wetrospace</Text> */}
 
       {/* Bottom view  */}
         <View style={styles.bottomView}>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     fontWeight :'700',
     color : '#fff',
     letterSpacing:-.5,
-    fontFamily : 'NunitoSansBold',
+    // fontFamily : 'NunitoSansBold',
   },
 
   regularText:{

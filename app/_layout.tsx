@@ -21,8 +21,13 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+
+    // NunitoSans
     NunitoSans: require('../assets/fonts/NunitoSans-Regular.ttf'),
     NunitoSansBold: require('../assets/fonts/NunitoSans-Bold.ttf'),
+
+    // NunitoSans: require('../assets/fonts/NunitoSans-Regular.ttf'),
+
     
     ...FontAwesome.font,
   });
