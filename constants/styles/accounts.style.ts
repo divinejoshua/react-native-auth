@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
 
     //@ts-ignore: true
     ORtext: (color : string) => ({
-        marginTop : 20,
+        marginTop : 30,
         textAlign : 'center',
         color : color,
         fontFamily : 'QuicksandBold',
@@ -100,12 +100,18 @@ const styles = StyleSheet.create({
 
     socialsBtnView: {
         flexDirection : 'row',
-        borderWidth : 1,
-        marginTop : 20,
+        marginTop : 30,
+        gap : 10
     },
 
     socialsBtn : {
+        height : 45,
+        alignItems : 'center',
+        justifyContent : 'center',
         flex : 2,
+        borderRadius : 5,
+        borderWidth : .5,
+
     }
 })
 

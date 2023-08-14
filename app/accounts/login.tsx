@@ -118,12 +118,17 @@ export default function LoginScreen() {
 
               {/* Social Button view  */}
               <View style={styles.socialsBtnView}>
+
+                  {/* Google  */}
                   <TouchableOpacity style={styles.socialsBtn}>
                     <Text>Google</Text>
                   </TouchableOpacity>
+
+                  {/* Apple  */}
                   <TouchableOpacity style={styles.socialsBtn}>
                     <Text>Apple</Text>
                   </TouchableOpacity>
+                  
               </View>
 
 
