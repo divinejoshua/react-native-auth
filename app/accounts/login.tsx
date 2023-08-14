@@ -5,6 +5,7 @@ import { Stack } from 'expo-router'
 import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
+import { useState } from 'react';
 
 
 
@@ -19,7 +20,8 @@ export default function LoginScreen() {
   const backgroundMuted = currentTheme === "light" ? Colors.light.backgroundMuted :Colors.dark.backgroundMuted
   const borderColor = currentTheme === "light" ? Colors.light.borderColor :Colors.dark.borderColor
 
-     
+  //Data
+  const [showPassword, setshowPassword] = useState<boolean>(false)     
 
   return (
     <SafeAreaView style={[styles.safeAreaView]}>
@@ -70,17 +72,29 @@ export default function LoginScreen() {
              {/* Password  */}
              <View style={styles.formView}>
               <Text style={styles.formLabel}>Password </Text>
+
+              <View style={styles.passwordView}>
+                {/* Eye icon  */}
+                <TouchableOpacity style={styles.showPasswordIcon} onPress={() => setshowPassword((prevValue) => !prevValue)}>
+                  {showPassword ? 
+                    <Entypo name="eye-with-line" size={18} color="#bcbcbc" />
+                    :
+                    <Entypo name="eye" size={18} color="#bcbcbc" />
+
+                  }
+              </TouchableOpacity>
               <TextInput
                 autoCapitalize="none"
                 autoComplete="password"
                 autoCorrect={false}
-                secureTextEntry={true}
+                secureTextEntry={!showPassword} //If showPassword is false, then SecureTextEntey will be true and vice versa
                 returnKeyType="next"
                 placeholder='Enter your password'
                 //@ts-ignore : true
                 style={styles.formControl(borderColor)}
                 textContentType="password"
               />
+              </View>
             </View>
 
             {/* Forgot password  */}

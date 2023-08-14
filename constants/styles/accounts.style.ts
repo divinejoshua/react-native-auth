@@ -49,7 +49,22 @@ const styles = StyleSheet.create({
         paddingHorizontal : 10,
         borderRadius : 5,
         borderColor : borderColor,
+        width: '100%',
     }),
+
+    passwordView : {
+        width: '100%',
+        flexDirection: 'row',
+        position : 'relative',
+    },
+
+    showPasswordIcon : {
+        position : 'absolute',
+        paddingVertical : 14,
+        paddingHorizontal : 20,
+        right : 0,
+        zIndex : 1,
+    },
 
     //@ts-ignore : true 
     forgotPassword : (color : string) =>({
