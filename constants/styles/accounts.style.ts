@@ -104,13 +104,24 @@ const styles = StyleSheet.create({
         gap : 10
     },
 
-    socialsBtn : {
+    //@ts-ignore : true
+    socialsBtn :  (borderColor : string) => ({
         height : 45,
         alignItems : 'center',
         justifyContent : 'center',
         flex : 2,
+        borderColor : "#999",
         borderRadius : 5,
         borderWidth : .5,
+        flexDirection :'row',
+
+    }),
+
+    socialIcon:{
+        height : 18,
+        width : 18,
+        marginRight : 10,
+        backgroundColor : 'transparent',
 
     }
 })

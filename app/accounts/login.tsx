@@ -5,6 +5,7 @@ import { Stack } from 'expo-router'
 import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useState } from 'react';
+import { Image } from 'expo-image';
 
 
 
@@ -120,15 +121,21 @@ export default function LoginScreen() {
               <View style={styles.socialsBtnView}>
 
                   {/* Google  */}
-                  <TouchableOpacity style={styles.socialsBtn}>
-                    <Text>Google</Text>
+                  {/* @ts-ignore:true  */}
+                  <TouchableOpacity style={styles.socialsBtn(borderColor)}>
+                    {/* @ts-ignore: true */}
+                    <Image source={require('../../assets/images/google.png')} style={styles.socialIcon}/>
+                     <Text>Google</Text>
                   </TouchableOpacity>
 
                   {/* Apple  */}
-                  <TouchableOpacity style={styles.socialsBtn}>
+                  {/* @ts-ignore:true  */}
+                  <TouchableOpacity style={styles.socialsBtn(borderColor)}>
+                    {/* @ts-ignore: true */}
+                    <Image source={require('../../assets/images/apple.png')} style={styles.socialIcon}/>
                     <Text>Apple</Text>
                   </TouchableOpacity>
-                  
+
               </View>
 
 
