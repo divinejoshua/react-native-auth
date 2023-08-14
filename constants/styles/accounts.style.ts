@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     },
 
     formLabel : {
-        fontSize : 18,
+        fontSize : 17,
         fontFamily : 'QuicksandSemiBold',
         marginBottom : 10,
     },
@@ -49,6 +49,14 @@ const styles = StyleSheet.create({
         paddingHorizontal : 10,
         borderRadius : 5,
         borderColor : borderColor,
+    }),
+
+    //@ts-ignore : true 
+    forgotPassword : (color : string) =>({
+        color : color,
+        marginTop :10,
+        textAlign : 'right',
+        fontFamily : 'QuicksandSemiBold',
     })
 })
 

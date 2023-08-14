@@ -83,6 +83,10 @@ export default function LoginScreen() {
               />
             </View>
 
+            {/* Forgot password  */}
+            {/* @ts-ignore */}
+            <Text style={styles.forgotPassword(textMuted)}>Forgot password?</Text>
+
 
           </KeyboardAvoidingView>
 
