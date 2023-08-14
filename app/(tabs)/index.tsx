@@ -16,7 +16,7 @@ export default function TabOneScreen() {
 
         {/* Button to remove onboarded from async storage  */}
       <TouchableOpacity style={styles.doneButton} onPress={()=> removeItem("onboarded")}>
-            <Text style={{color : "#fff", fontFamily : 'NunitoSansBold',}}>Clear Async storage</Text>
+            <Text style={{color : "#fff", fontFamily : 'QuicksandSemiBold',}}>Clear Async storage</Text>
         </TouchableOpacity>
 
       <Text style={{ padding : 20, textAlign : 'center'}}>By clearing async storage, you will be able to see the onboarding screen again</Text>
