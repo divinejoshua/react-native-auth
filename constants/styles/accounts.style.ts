@@ -110,11 +110,10 @@ const styles = StyleSheet.create({
         alignItems : 'center',
         justifyContent : 'center',
         flex : 2,
-        borderColor : "#999",
+        borderColor : borderColor,
         borderRadius : 5,
         borderWidth : .5,
         flexDirection :'row',
-
     }),
 
     socialIcon:{
@@ -122,7 +121,10 @@ const styles = StyleSheet.create({
         width : 18,
         marginRight : 10,
         backgroundColor : 'transparent',
-
+    },
+    
+    btnText:{
+        fontFamily : 'QuicksandSemiBold',
     }
 })
 
