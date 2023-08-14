@@ -1,6 +1,8 @@
 import { ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import { View, Text } from '../../components/Themed';
 import { router } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 
 export default function GetStartedScreen() {
@@ -15,24 +17,24 @@ export default function GetStartedScreen() {
         <Text style={styles.nameText}>Wetrospace</Text>
 
       {/* Bottom view  */}
-        <View style={styles.bottomView}>
+        <LinearGradient colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,0.5)']} style={styles.bottomView}>
 
           {/* Hero text  */}
           <Text style={styles.heroText}>Book a vacation with Wetrospace</Text>
           <Text style={styles.regularText}>Discover, Connect and Visit every part of the world with Wetrospace.</Text>
 
           {/* Get started button  */}
-          <TouchableOpacity style={styles.actionButton} onPress={()=> router.push('/')}>
+          <TouchableOpacity style={styles.actionButton} onPress={()=> router.push('/accounts/onboarding')}>
             <Text style={styles.actionButtonText}>Get started</Text>
           </TouchableOpacity>
 
         {/* Register text  */}
-          <View style={styles.registerView}>
+          <View  style={styles.registerView}>
             <Text style={styles.registerText}>Haven't registered yet,</Text>
             <Text style={styles.registerLink}> register here</Text>
           </View>
 
-        </View>
+        </LinearGradient>
     </ImageBackground>
     </View>
   )
@@ -61,7 +63,6 @@ const styles = StyleSheet.create({
     bottom : 0,
     padding: 30,
     position : 'absolute',
-    // borderWidth : 1,
     width: '100%',
     backgroundColor :'transparent',
   },

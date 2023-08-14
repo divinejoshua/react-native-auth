@@ -1,4 +1,4 @@
-import { View, Text } from '../components/Themed'
+import { View, Text } from '../../components/Themed'
 // @ts-ignore : true 
 import Onboarding from 'react-native-onboarding-swiper';
 import React from 'react'
@@ -7,7 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Dimensions, Image, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { router } from 'expo-router';
-import { setItem } from '../utils/asyncStorage';
+import { setItem } from '../../utils/asyncStorage';
 
 const {width, height} = Dimensions.get('window');
 
@@ -28,7 +28,7 @@ export default function OnboardingScreen() {
   const handleDone = ()=>{
 
     // Move to home page 
-    router.replace('/accounts/getstarted')
+    router.replace('/')
 
     // Set onboarded to '1' in async storage 
     setItem('onboarded', '1');
@@ -53,7 +53,7 @@ export default function OnboardingScreen() {
               backgroundColor: '#fff',
               image: (
                 // <View style={styles.lottie}>
-                    <Image style={styles.images} source={require('../assets/images/one.jpg')} />
+                    <Image style={styles.images} source={require('../../assets/images/one.jpg')} />
                     //  <Lottie style={{backgroundColor : '#fff'}}  source={require('../assets/images/two.json')} autoPlay loop />
                 //  </View>
               ),
@@ -67,7 +67,7 @@ export default function OnboardingScreen() {
             {
               backgroundColor: '#fff',
               image: (
-                    <Image style={styles.images} source={require('../assets/images/two.jpg')} />
+                    <Image style={styles.images} source={require('../../assets/images/two.jpg')} />
                 ),
 
               title: 'Communicate',
@@ -78,7 +78,7 @@ export default function OnboardingScreen() {
             {
               backgroundColor: '#fff',
               image: (
-                <Image style={styles.images} source={require('../assets/images/three.jpg')} />
+                <Image style={styles.images} source={require('../../assets/images/three.jpg')} />
               ),
 
               title: 'Share',
@@ -89,7 +89,7 @@ export default function OnboardingScreen() {
             {
               backgroundColor: '#fff',
               image: (
-                <Image style={styles.images} source={require('../assets/images/four.jpg')} /> 
+                <Image style={styles.images} source={require('../../assets/images/four.jpg')} /> 
               ),
               title: 'Security',
               subtitle: 'Your files are most secure and easily accessibly anywhere, from any device',
@@ -108,7 +108,7 @@ export default function OnboardingScreen() {
             color: '#999',
             fontFamily : 'QuicksandMedium',
           }}
-          
+
           imageContainerStyles={{
           }}
         />

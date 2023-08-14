@@ -8,7 +8,7 @@ import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 
 import { getItem } from '../../utils/asyncStorage';
-import OnboardingScreen from '../onboarding';
+import OnboardingScreen from '../accounts/onboarding';
 
 import { Redirect } from "expo-router";
 
@@ -52,10 +52,10 @@ export default function TabLayout() {
   },[])
 
 
-  // If not onboarded, then redirect to the onboarding screen 
+  // If not onboarded, then redirect to the onboarding/getstarted screen 
   if(showOnboarding===true){
     return(
-      <Redirect href="/onboarding" />
+      <Redirect href="/accounts/getstarted" />
     )
   }
 
