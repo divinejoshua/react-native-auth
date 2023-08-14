@@ -18,7 +18,7 @@ export default function OnboardingScreen() {
   const doneButton = ({...props})=>{
     return (
         <TouchableOpacity style={styles.doneButton} {...props}>
-            <Text style={{color : "#fff", fontFamily : 'NunitoSansBold',}}>Done</Text>
+            <Text style={{color : "#fff", fontFamily : 'QuicksandBold',}}>Done</Text>
         </TouchableOpacity>
     )
   }
@@ -97,7 +97,7 @@ export default function OnboardingScreen() {
           ]}
 
           titleStyles={{
-            fontFamily : 'NunitoSansBold',
+            fontFamily : 'QuicksandBold',
             color : '#777',
 
           }}
@@ -106,6 +106,8 @@ export default function OnboardingScreen() {
             letterSpacing: .4,
             fontSize: 17,
             color: '#999',
+            fontFamily : 'QuicksandMedium',
+
 
           }}
           imageContainerStyles={{
