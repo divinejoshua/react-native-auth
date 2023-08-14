@@ -27,13 +27,13 @@ const styles = StyleSheet.create({
 
     //@ts-ignore : true
     subTitleText: (color : string) => ({
-        marginTop : 10,
+        marginTop : 15,
         fontSize : 16,
         color : color,
     }),
 
     formView:{
-        marginTop : 20,
+        marginTop : 30,
     },
 
     formLabel : {
@@ -72,7 +72,41 @@ const styles = StyleSheet.create({
         marginTop :10,
         textAlign : 'right',
         fontFamily : 'QuicksandSemiBold',
-    })
+    }),
+
+    actionBtn : {
+        marginTop : 30,
+        alignItems : 'center',
+        justifyContent : 'center',
+        width : '100%',
+        height : 50,
+        backgroundColor : '#3b82f6',
+        borderRadius : 5,
+    },
+
+    btnColor : {
+        color : '#fff',
+        fontSize : 16,
+        fontFamily : 'QuicksandBold',
+    },
+
+    //@ts-ignore: true
+    ORtext: (color : string) => ({
+        marginTop : 20,
+        textAlign : 'center',
+        color : color,
+        fontFamily : 'QuicksandBold',
+    }),
+
+    socialsBtnView: {
+        flexDirection : 'row',
+        borderWidth : 1,
+        marginTop : 20,
+    },
+
+    socialsBtn : {
+        flex : 2,
+    }
 })
 
 export default styles;

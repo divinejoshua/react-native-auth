@@ -1,5 +1,5 @@
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme, TextInput } from 'react-native';
-import { SafeAreaView, Text, View } from '../../components/Themed'
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
+import { SafeAreaView, Text, View, TextInput } from '../../components/Themed'
 import styles from '../../constants/styles/accounts.style'
 import { Stack } from 'expo-router'
 import Colors from '../../constants/Colors';
@@ -76,7 +76,6 @@ export default function LoginScreen() {
 
                 {/* Show password icon  */}
                 <TouchableOpacity style={styles.showPasswordIcon} onPress={() => setshowPassword((prevValue) => !prevValue)}>
-
                   {showPassword ? 
                     <Entypo name="eye-with-line" size={18} color="#bcbcbc" /> //Show eye closed when showPassword is true
                     :
@@ -84,6 +83,8 @@ export default function LoginScreen() {
 
                   }
               </TouchableOpacity>
+
+              {/* Password Text Input  */}
               <TextInput
                 autoCapitalize="none"
                 autoComplete="password"
@@ -103,7 +104,28 @@ export default function LoginScreen() {
             <Text style={styles.forgotPassword(textMuted)}>Forgot password?</Text>
 
 
-          </KeyboardAvoidingView>
+            {/* Action button  */}
+              <TouchableOpacity style={styles.actionBtn}>
+                <Text style={styles.btnColor}>Continue</Text>
+              </TouchableOpacity>
+
+
+              </KeyboardAvoidingView>
+
+              {/* OR Login With socials  */}
+              {/* @ts-ignore:true  */}
+              <Text style={styles.ORtext(textMuted)}>OR</Text>
+
+              {/* Social Button view  */}
+              <View style={styles.socialsBtnView}>
+                  <TouchableOpacity style={styles.socialsBtn}>
+                    <Text>Google</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.socialsBtn}>
+                    <Text>Apple</Text>
+                  </TouchableOpacity>
+              </View>
+
 
         </ScrollView>
 

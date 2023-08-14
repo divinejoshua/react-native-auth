@@ -3,7 +3,13 @@
  * https://docs.expo.io/guides/color-schemes/
  */
 
-import { Text as DefaultText, useColorScheme, View as DefaultView, SafeAreaView as DefaultSafeAreaView } from 'react-native';
+import { 
+  Text as DefaultText, 
+  useColorScheme, 
+  View as DefaultView, 
+  SafeAreaView as DefaultSafeAreaView,
+  TextInput as DefaultTextInput
+ } from 'react-native';
 
 import Colors from '../constants/Colors';
 
@@ -15,6 +21,7 @@ type ThemeProps = {
 export type TextProps = ThemeProps & DefaultText['props'];
 export type ViewProps = ThemeProps & DefaultView['props'];
 export type SafeAreaViewProps = ThemeProps & DefaultSafeAreaView['props'];
+export type TextInputProps = ThemeProps & DefaultTextInput['props'];
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -53,4 +60,13 @@ export function SafeAreaView(props: SafeAreaViewProps) {
   const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
 
   return <DefaultSafeAreaView style={[{ backgroundColor }, style]} {...otherProps} />;
+}
+
+
+// Custom Safe area view 
+export function TextInput(props: TextInputProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+
+  return <DefaultTextInput style={[{ color }, style]} {...otherProps} />;
 }
