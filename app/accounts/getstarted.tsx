@@ -12,7 +12,7 @@ export default function GetStartedScreen() {
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
 
         {/* App Name  */}
-        {/* <Text style={styles.nameText}>Wetrospace</Text> */}
+        <Text style={styles.nameText}>Wetrospace</Text>
 
       {/* Bottom view  */}
         <View style={styles.bottomView}>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 25,
     lineHeight: 84,
-    fontFamily : 'NunitoSansBold',
+    fontFamily : 'QuicksandBold',
     fontWeight: '700',
     // textAlign: 'center',
   },
@@ -70,8 +70,7 @@ const styles = StyleSheet.create({
     fontSize : 35,
     fontWeight :'700',
     color : '#fff',
-    letterSpacing:-.5,
-    // fontFamily : 'NunitoSansBold',
+    fontFamily : 'QuicksandBold',
   },
 
   regularText:{
@@ -94,7 +93,7 @@ const styles = StyleSheet.create({
   actionButtonText: {
     color : '#fff',
     fontWeight : '600',
-    fontFamily : 'NunitoSansBold',
+    fontFamily : 'QuicksandSemiBold',
     fontSize : 16,
   },
 
@@ -112,7 +111,7 @@ const styles = StyleSheet.create({
     color : '#fff',
     letterSpacing:.3,
     fontWeight : '500',
-    fontFamily : 'NunitoSansBold',
+    fontFamily : 'QuicksandSemiBold',
 
   },
 
@@ -121,7 +120,7 @@ const styles = StyleSheet.create({
     letterSpacing:.3,
     color : '#3b82f6',
     fontWeight : '500',
-    fontFamily : 'NunitoSansBold',
+    fontFamily : 'QuicksandSemiBold',
   }
 
 });
