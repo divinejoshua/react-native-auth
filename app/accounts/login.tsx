@@ -16,6 +16,7 @@ export default function LoginScreen() {
   const backgroundColor = currentTheme === "light" ? Colors.light.background :Colors.dark.background
   const textColor = currentTheme === "light" ? Colors.light.text :Colors.dark.text
   const textMuted = currentTheme === "light" ? Colors.light.textMuted :Colors.dark.textMuted
+  const backgroundMuted = currentTheme === "light" ? Colors.light.backgroundMuted :Colors.dark.backgroundMuted
   const borderColor = currentTheme === "light" ? Colors.light.borderColor :Colors.dark.borderColor
 
      
@@ -29,7 +30,7 @@ export default function LoginScreen() {
                 backgroundColor: backgroundColor,
               },
               headerLeft: () => (
-                  <TouchableOpacity style={[styles.backButton, {backgroundColor : borderColor}]}>
+                  <TouchableOpacity style={[styles.backButton, {backgroundColor : backgroundMuted}]}>
                     <Entypo name="chevron-left" size={20} color={textColor}/>
                   </TouchableOpacity>
               ),
@@ -48,11 +49,10 @@ export default function LoginScreen() {
           {/* Form  */}
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            style={styles.form}
           >
 
             {/* Email  */}
-            <Pressable>
+            <View style={styles.formView}>
               <Text style={styles.formLabel}>Email </Text>
               <TextInput
                 autoCapitalize="none"
@@ -60,11 +60,29 @@ export default function LoginScreen() {
                 autoCorrect={false}
                 keyboardType="email-address"
                 returnKeyType="next"
+                placeholder='Enter your email address'
                 //@ts-ignore : true
                 style={styles.formControl(borderColor)}
-                textContentType="username"
+                textContentType="emailAddress"
               />
-            </Pressable>
+            </View>
+
+             {/* Password  */}
+             <View style={styles.formView}>
+              <Text style={styles.formLabel}>Password </Text>
+              <TextInput
+                autoCapitalize="none"
+                autoComplete="password"
+                autoCorrect={false}
+                secureTextEntry={true}
+                returnKeyType="next"
+                placeholder='Enter your password'
+                //@ts-ignore : true
+                style={styles.formControl(borderColor)}
+                textContentType="password"
+              />
+            </View>
+
 
           </KeyboardAvoidingView>
 

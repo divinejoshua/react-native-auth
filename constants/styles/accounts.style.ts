@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         color : color,
     }),
 
-    form:{
+    formView:{
         marginTop : 20,
     },
 
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         borderWidth : 1,
         paddingHorizontal : 10,
         borderRadius : 5,
-        borderColor : "#efefef",
+        borderColor : borderColor,
     })
 })
 

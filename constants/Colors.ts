@@ -19,7 +19,7 @@ export default {
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,
     backgroundMuted : '#212121',
-    borderColor : "#efefef",
+    borderColor : "#333",
     textMuted : "#777777",
 
   },
