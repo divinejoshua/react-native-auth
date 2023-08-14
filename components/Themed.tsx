@@ -30,6 +30,8 @@ export function useThemeColor(
   }
 }
 
+
+// Custom Text 
 export function Text(props: TextProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
@@ -37,15 +39,16 @@ export function Text(props: TextProps) {
   return <DefaultText style={[{ color, fontFamily : 'QuicksandMedium' }, style]} {...otherProps} />;
 }
 
+// Custom view 
 export function View(props: ViewProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
 
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
+}
 
- }
-
- export function SafeAreaView(props: ViewProps) {
+// Custom Safe area view 
+export function SafeAreaView(props: SafeAreaViewProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
 
