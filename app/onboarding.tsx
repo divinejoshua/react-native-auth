@@ -107,9 +107,8 @@ export default function OnboardingScreen() {
             fontSize: 17,
             color: '#999',
             fontFamily : 'QuicksandMedium',
-
-
           }}
+          
           imageContainerStyles={{
           }}
         />
