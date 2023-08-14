@@ -24,7 +24,7 @@ export default function GetStartedScreen() {
           <Text style={styles.regularText}>Discover, Connect and Visit every part of the world with Wetrospace.</Text>
 
           {/* Get started button  */}
-          <TouchableOpacity style={styles.actionButton} onPress={()=> router.push('/accounts/onboarding')}>
+          <TouchableOpacity style={styles.actionButton} onPress={()=> router.replace('/accounts/onboarding')}>
             <Text style={styles.actionButtonText}>Get started</Text>
           </TouchableOpacity>
 
