@@ -73,7 +73,7 @@ export default function OtpScreen() {
             </TouchableOpacity>
 
             {/* Action button  */}
-              <TouchableOpacity style={styles.actionBtn} onPress={()=> router.push("/accounts/otp")}>
+              <TouchableOpacity style={styles.actionBtn} onPress={()=> router.push("/")}>
                 <Text style={styles.btnColor}>Continue</Text>
               </TouchableOpacity>
 
