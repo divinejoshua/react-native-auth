@@ -17,7 +17,7 @@ export default function GetStartedScreen() {
         <Text style={styles.nameText}>Wetrospace</Text>
 
       {/* Bottom view  */}
-        <LinearGradient colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,0.7)']} style={styles.bottomView}>
+        <LinearGradient colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,0.3)']} style={styles.bottomView}>
 
           {/* Hero text  */}
           <Text style={styles.heroText}>Book a vacation with Wetrospace</Text>
