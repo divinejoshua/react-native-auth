@@ -151,12 +151,25 @@ const styles = StyleSheet.create({
         color : '#3b82f6',
       },
 
-    //   @ts-ignore : true
-      termsOfService : (color: string) =>({
-        marginTop : 15,
-        color : color,
+      checkboxView:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap : 10,
+        maxWidth: '100%',
+        marginTop : 20,
+      },
 
-      })
+      checkbox :{
+        borderRadius :7,
+      },
+
+    //   @ts-ignore : true
+      termsOfServiceText : (color: string) =>({
+        color : color,
+        flex: 1,
+        maxWidth: '100%',
+      }),
+
 })
 
 export default styles;

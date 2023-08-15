@@ -23,6 +23,7 @@ export default function RegisterScreen() {
 
   //Data
   const [showPassword, setshowPassword] = useState<boolean>(false)     
+  const [isChecked, setChecked] = useState<boolean>(false)     
 
   return (
     <SafeAreaView style={[styles.safeAreaView]}>
@@ -126,6 +127,22 @@ export default function RegisterScreen() {
                 />
                 </View>
 
+                {/* Terms of service  */}
+                <View style={styles.checkboxView}>
+                    <Checkbox
+                        value={isChecked}
+                        onValueChange={setChecked}
+                        style={styles.checkbox}
+                        color={isChecked ? '#3b82f6' : undefined}
+                    />
+
+                    {/* @ts-ignore:true  */}
+                    <Text style={styles.termsOfServiceText(textMuted)}>
+                        By agreeing to the term and conditions, you are entering into a legally binding contract with the service provider
+                    </Text>
+                </View>
+
+
                 { /* Action button  */}
                 <TouchableOpacity style={styles.actionBtn}>
                     <Text style={styles.btnColor}>Continue</Text>
@@ -134,19 +151,6 @@ export default function RegisterScreen() {
 
            </KeyboardAvoidingView>
 
-            {/* Terms of service  */}
-            <View>
-                <Checkbox
-                    value={false}
-                    // onValueChange={setSelection}
-                    // style={styles.checkbox}
-                />
-
-                {/* @ts-ignore:true  */}
-                <Text style={styles.termsOfService(textMuted)}>
-                    By agreeing to the term and conditions, you are entering into a legally binding contract with the service provider
-                </Text>
-            </View>
 
             {/* Login text  */}
             <View  style={styles.registerView}>
