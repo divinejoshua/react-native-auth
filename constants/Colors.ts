@@ -20,7 +20,7 @@ export default {
     tabIconSelected: tintColorDark,
     backgroundMuted : '#212121',
     borderColor : "#333",
-    textMuted : "#777777",
+    textMuted : "#999",
 
   },
 };
