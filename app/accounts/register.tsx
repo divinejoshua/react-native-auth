@@ -53,6 +53,23 @@ export default function RegisterScreen() {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           >
 
+            {/* Username  */}
+            <View style={styles.formView}>
+              <Text style={styles.formLabel}>Username </Text>
+              <TextInput
+                autoCapitalize="none"
+                autoComplete="username"
+                autoCorrect={false}
+                keyboardType="default"
+                returnKeyType="next"
+                placeholder='Enter your username'
+                //@ts-ignore : true
+                style={styles.formControl(borderColor)}
+                textContentType="username"
+              />
+            </View>
+
+
             {/* Email  */}
             <View style={styles.formView}>
               <Text style={styles.formLabel}>Email </Text>
@@ -68,6 +85,7 @@ export default function RegisterScreen() {
                 textContentType="emailAddress"
               />
             </View>
+            
 
              {/* Password  */}
              <View style={styles.formView}>
@@ -99,6 +117,8 @@ export default function RegisterScreen() {
               />
               </View>
             </View>
+
+
 
             {/* Forgot password  */}
             {/* @ts-ignore */}

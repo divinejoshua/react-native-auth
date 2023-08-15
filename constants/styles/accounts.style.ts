@@ -30,10 +30,11 @@ const styles = StyleSheet.create({
         marginTop : 15,
         fontSize : 16,
         color : color,
+        marginBottom : 10,
     }),
 
     formView:{
-        marginTop : 30,
+        marginTop : 20,
     },
 
     formLabel : {
