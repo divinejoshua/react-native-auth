@@ -1,7 +1,7 @@
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
 import { SafeAreaView, Text, View, TextInput } from '../../components/Themed'
 import styles from '../../constants/styles/accounts.style'
-import { Stack } from 'expo-router'
+import { Link, Stack } from 'expo-router'
 import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useState } from 'react';
@@ -50,6 +50,7 @@ export default function RegisterScreen() {
 
           {/* Form  */}
           <KeyboardAvoidingView
+            keyboardVerticalOffset={100}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           >
 
@@ -87,21 +88,9 @@ export default function RegisterScreen() {
             </View>
             
 
-             {/* Password  */}
-             <View style={styles.formView}>
+            {/* Password  */}
+            <View style={styles.formView}>
               <Text style={styles.formLabel}>Password </Text>
-
-              <View style={styles.passwordView}>
-
-                {/* Show password icon  */}
-                <TouchableOpacity style={styles.showPasswordIcon} onPress={() => setshowPassword((prevValue) => !prevValue)}>
-                  {showPassword ? 
-                    <Entypo name="eye-with-line" size={18} color="#bcbcbc" /> //Show eye closed when showPassword is true
-                    :
-                    <Entypo name="eye" size={18} color="#bcbcbc" /> //Show eye open when showPassword is false
-
-                  }
-              </TouchableOpacity>
 
               {/* Password Text Input  */}
               <TextInput
@@ -115,15 +104,26 @@ export default function RegisterScreen() {
                 style={styles.formControl(borderColor)}
                 textContentType="password"
               />
-              </View>
             </View>
 
 
+            {/* Confirm Password  */}
+            <View style={styles.formView}>
+              <Text style={styles.formLabel}>Password </Text>
 
-            {/* Forgot password  */}
-            {/* @ts-ignore */}
-            <Text style={styles.forgotPassword(textMuted)}>Forgot password?</Text>
-
+              {/* Password Text Input  */}
+              <TextInput
+                autoCapitalize="none"
+                autoComplete="password"
+                autoCorrect={false}
+                secureTextEntry={!showPassword} //If showPassword is false, then SecureTextEntey will be true and vice versa
+                returnKeyType="next"
+                placeholder='Enter your password'
+                //@ts-ignore : true
+                style={styles.formControl(borderColor)}
+                textContentType="password"
+              />
+            </View>
 
             {/* Action button  */}
               <TouchableOpacity style={styles.actionBtn}>
@@ -162,8 +162,8 @@ export default function RegisterScreen() {
               <View  style={styles.registerView}>
 
                 {/* @ts-ignore: true  */}
-                <Text style={styles.registerText(textMuted)}>Haven't registered yet?</Text>
-                <Text style={styles.registerLink}> Register</Text>
+                <Text style={styles.registerText(textMuted)}>Already have an account?</Text>
+                <Link href={"/accounts/login"}><Text style={styles.registerLink}> Login</Text></Link>
               </View>
 
 
