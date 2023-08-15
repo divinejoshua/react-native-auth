@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap : 10,
         maxWidth: '100%',
-        marginTop : 20,
+        marginTop : 30,
       },
 
       checkbox :{
