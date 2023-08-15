@@ -171,6 +171,11 @@ const styles = StyleSheet.create({
         maxWidth: '100%',
       }),
 
+      link:{
+        color : '#3b82f6',
+        fontFamily : 'QuicksandSemiBold',
+      }
+
 })
 
 export default styles;
