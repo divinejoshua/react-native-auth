@@ -1,7 +1,7 @@
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
 import { SafeAreaView, Text, View, TextInput } from '../../components/Themed'
 import styles from '../../constants/styles/accounts.style'
-import { Link, Stack } from 'expo-router'
+import { Link, Stack, router } from 'expo-router'
 import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useState } from 'react';
@@ -144,7 +144,7 @@ export default function RegisterScreen() {
 
 
                 { /* Action button  */}
-                <TouchableOpacity style={styles.actionBtn}>
+                <TouchableOpacity style={styles.actionBtn}  onPress={()=> router.push("/accounts/otp")}>
                     <Text style={styles.btnColor}>Continue</Text>
                 </TouchableOpacity>
 
