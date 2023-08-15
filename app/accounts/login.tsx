@@ -1,7 +1,7 @@
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
 import { SafeAreaView, Text, View, TextInput } from '../../components/Themed'
 import styles from '../../constants/styles/accounts.style'
-import { Stack } from 'expo-router'
+import { Link, Stack } from 'expo-router'
 import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useState } from 'react';
@@ -143,7 +143,7 @@ export default function LoginScreen() {
 
                 {/* @ts-ignore: true  */}
                 <Text style={styles.registerText(textMuted)}>Haven't registered yet?</Text>
-                <Text style={styles.registerLink}> Register</Text>
+                <Link href={"/accounts/register"}><Text style={styles.registerLink}> Register</Text></Link>
               </View>
 
 
