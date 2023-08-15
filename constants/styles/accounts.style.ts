@@ -174,7 +174,14 @@ const styles = StyleSheet.create({
       link:{
         color : '#3b82f6',
         fontFamily : 'QuicksandSemiBold',
-      }
+      },
+
+      resendCode :{
+        color : '#3b82f6',
+        marginTop :10,
+        textAlign : 'right',
+        fontFamily : 'QuicksandSemiBold',
+      },
 
 })
 

@@ -53,26 +53,27 @@ export default function OtpScreen() {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           >
 
-            {/* Email  */}
+            {/* OTP  */}
             <View style={styles.formView}>
-              <Text style={styles.formLabel}>Email </Text>
+              <Text style={styles.formLabel}>OTP </Text>
               <TextInput
                 autoCapitalize="none"
-                autoComplete="email"
+                autoComplete="one-time-code"
                 autoCorrect={false}
-                keyboardType="email-address"
+                keyboardType="number-pad"
                 returnKeyType="next"
-                placeholder='Enter your email address'
+                placeholder='Enter your OTP here'
                 //@ts-ignore : true
                 style={styles.formControl(borderColor)}
-                textContentType="emailAddress"
+                textContentType="oneTimeCode"
               />
             </View>
 
             {/* Resend OTP  */}
             {/* @ts-ignore */}
-            <Text style={styles.forgotPassword(textMuted)}>Forgot password?</Text>
-
+            <TouchableOpacity>
+                <Text style={styles.resendCode}>Send code again </Text>
+            </TouchableOpacity>
 
             {/* Action button  */}
               <TouchableOpacity style={styles.actionBtn}>
