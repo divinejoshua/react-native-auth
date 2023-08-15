@@ -5,7 +5,6 @@ import { Link, Stack, router } from 'expo-router'
 import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useState } from 'react';
-import { Image } from 'expo-image';
 import Checkbox from 'expo-checkbox';
 
 
