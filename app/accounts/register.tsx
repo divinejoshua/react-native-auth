@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme, CheckBox } from 'react-native';
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
 import { SafeAreaView, Text, View, TextInput } from '../../components/Themed'
 import styles from '../../constants/styles/accounts.style'
 import { Link, Stack } from 'expo-router'
@@ -6,6 +6,7 @@ import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Image } from 'expo-image';
+import Checkbox from 'expo-checkbox';
 
 
 
@@ -134,18 +135,18 @@ export default function RegisterScreen() {
            </KeyboardAvoidingView>
 
             {/* Terms of service  */}
+            <View>
+                <Checkbox
+                    value={false}
+                    // onValueChange={setSelection}
+                    // style={styles.checkbox}
+                />
 
-            <CheckBox
-                value={false}
-                // onValueChange={setSelection}
-                // style={styles.checkbox}
-            />
-
-            {/* @ts-ignore:true  */}
-            <Text style={styles.termsOfService(textMuted)}>
-                By agreeing to the term and conditions, you are entering into a legally binding contract with the service provider
-            </Text>
-
+                {/* @ts-ignore:true  */}
+                <Text style={styles.termsOfService(textMuted)}>
+                    By agreeing to the term and conditions, you are entering into a legally binding contract with the service provider
+                </Text>
+            </View>
 
             {/* Login text  */}
             <View  style={styles.registerView}>
