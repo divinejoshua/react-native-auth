@@ -111,7 +111,7 @@ export default function RegisterScreen() {
 
                 {/* Confirm Password  */}
                 <View style={styles.formView}>
-                <Text style={styles.formLabel}>Password </Text>
+                <Text style={styles.formLabel}>Confirm Password </Text>
 
                 {/* Password Text Input  */}
                 <TextInput
@@ -120,7 +120,7 @@ export default function RegisterScreen() {
                     autoCorrect={false}
                     secureTextEntry={!showPassword} //If showPassword is false, then SecureTextEntey will be true and vice versa
                     returnKeyType="next"
-                    placeholder='Enter your password'
+                    placeholder='Confirm your password'
                     //@ts-ignore : true
                     style={styles.formControl(borderColor)}
                     textContentType="password"
