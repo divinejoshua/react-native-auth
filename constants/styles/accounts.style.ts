@@ -149,7 +149,14 @@ const styles = StyleSheet.create({
         fontSize : 17,
         letterSpacing:.3,
         color : '#3b82f6',
-      }
+      },
+
+    //   @ts-ignore : true
+      termsOfService : (color: string) =>({
+        marginTop : 15,
+        color : color,
+
+      })
 })
 
 export default styles;

@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme, CheckBox } from 'react-native';
 import { SafeAreaView, Text, View, TextInput } from '../../components/Themed'
 import styles from '../../constants/styles/accounts.style'
 import { Link, Stack } from 'expo-router'
@@ -88,83 +88,72 @@ export default function RegisterScreen() {
             </View>
             
 
-            {/* Password  */}
-            <View style={styles.formView}>
-              <Text style={styles.formLabel}>Password </Text>
+                {/* Password  */}
+                <View style={styles.formView}>
+                <Text style={styles.formLabel}>Password </Text>
 
-              {/* Password Text Input  */}
-              <TextInput
-                autoCapitalize="none"
-                autoComplete="password"
-                autoCorrect={false}
-                secureTextEntry={!showPassword} //If showPassword is false, then SecureTextEntey will be true and vice versa
-                returnKeyType="next"
-                placeholder='Enter your password'
-                //@ts-ignore : true
-                style={styles.formControl(borderColor)}
-                textContentType="password"
-              />
+                {/* Password Text Input  */}
+                <TextInput
+                    autoCapitalize="none"
+                    autoComplete="password"
+                    autoCorrect={false}
+                    secureTextEntry={!showPassword} //If showPassword is false, then SecureTextEntey will be true and vice versa
+                    returnKeyType="next"
+                    placeholder='Enter your password'
+                    //@ts-ignore : true
+                    style={styles.formControl(borderColor)}
+                    textContentType="password"
+                />
+                </View>
+
+
+                {/* Confirm Password  */}
+                <View style={styles.formView}>
+                <Text style={styles.formLabel}>Password </Text>
+
+                {/* Password Text Input  */}
+                <TextInput
+                    autoCapitalize="none"
+                    autoComplete="password"
+                    autoCorrect={false}
+                    secureTextEntry={!showPassword} //If showPassword is false, then SecureTextEntey will be true and vice versa
+                    returnKeyType="next"
+                    placeholder='Enter your password'
+                    //@ts-ignore : true
+                    style={styles.formControl(borderColor)}
+                    textContentType="password"
+                />
+                </View>
+
+                { /* Action button  */}
+                <TouchableOpacity style={styles.actionBtn}>
+                    <Text style={styles.btnColor}>Continue</Text>
+                </TouchableOpacity>
+
+
+           </KeyboardAvoidingView>
+
+            {/* Terms of service  */}
+
+            <CheckBox
+                value={false}
+                // onValueChange={setSelection}
+                // style={styles.checkbox}
+            />
+
+            {/* @ts-ignore:true  */}
+            <Text style={styles.termsOfService(textMuted)}>
+                By agreeing to the term and conditions, you are entering into a legally binding contract with the service provider
+            </Text>
+
+
+            {/* Login text  */}
+            <View  style={styles.registerView}>
+
+            {/* @ts-ignore: true  */}
+            <Text style={styles.registerText(textMuted)}>Already have an account?</Text>
+            <Link href={"/accounts/login"}><Text style={styles.registerLink}> Login</Text></Link>
             </View>
-
-
-            {/* Confirm Password  */}
-            <View style={styles.formView}>
-              <Text style={styles.formLabel}>Password </Text>
-
-              {/* Password Text Input  */}
-              <TextInput
-                autoCapitalize="none"
-                autoComplete="password"
-                autoCorrect={false}
-                secureTextEntry={!showPassword} //If showPassword is false, then SecureTextEntey will be true and vice versa
-                returnKeyType="next"
-                placeholder='Enter your password'
-                //@ts-ignore : true
-                style={styles.formControl(borderColor)}
-                textContentType="password"
-              />
-            </View>
-
-            {/* Action button  */}
-              <TouchableOpacity style={styles.actionBtn}>
-                <Text style={styles.btnColor}>Continue</Text>
-              </TouchableOpacity>
-
-
-              </KeyboardAvoidingView>
-
-              {/* OR Login With socials  */}
-              {/* @ts-ignore:true  */}
-              <Text style={styles.ORtext(textMuted)}>OR</Text>
-
-              {/* Social Button view  */}
-              <View style={styles.socialsBtnView}>
-
-                  {/* Google  */}
-                  {/* @ts-ignore:true  */}
-                  <TouchableOpacity style={styles.socialsBtn(borderColor)}>
-                    {/* @ts-ignore: true */}
-                    <Image source={require('../../assets/images/google.png')} style={styles.socialIcon}/>
-                     <Text style={styles.btnText}>Google</Text>
-                  </TouchableOpacity>
-
-                  {/* Facebook  */}
-                  {/* @ts-ignore:true  */}
-                  <TouchableOpacity style={styles.socialsBtn(borderColor)}>
-                    {/* @ts-ignore: true */}
-                    <Image source={require('../../assets/images/facebook.png')} style={styles.socialIcon}/>
-                    <Text style={styles.btnText}>Facebook</Text>
-                  </TouchableOpacity>
-
-              </View>
-
-               {/* Register text  */}
-              <View  style={styles.registerView}>
-
-                {/* @ts-ignore: true  */}
-                <Text style={styles.registerText(textMuted)}>Already have an account?</Text>
-                <Link href={"/accounts/login"}><Text style={styles.registerLink}> Login</Text></Link>
-              </View>
 
 
 
