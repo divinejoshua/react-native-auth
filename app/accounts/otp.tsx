@@ -5,9 +5,12 @@ import { Link, Stack, router } from 'expo-router'
 import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useState } from 'react';
+import { setItem } from '../../utils/asyncStorage';
 
 
 export default function OtpScreen() {
+
+
 
   // Get theme 
   const currentTheme = useColorScheme();
@@ -17,8 +20,16 @@ export default function OtpScreen() {
   const backgroundMuted = currentTheme === "light" ? Colors.light.backgroundMuted :Colors.dark.backgroundMuted
   const borderColor = currentTheme === "light" ? Colors.light.borderColor :Colors.dark.borderColor
 
-  //Data
-  const [showPassword, setshowPassword] = useState<boolean>(false)     
+  
+//   On completing validation check 
+  const completeValidation = () => {
+    //NOTE 
+    // Set onboarded to '1' in async storage: This will make sure the user doesn't have to see the onboarding / Accounts screen after entering the app again
+    setItem('onboarded', '1');
+
+    //Redirect the user to home page
+    router.replace("/")
+  }
 
   return (
     <SafeAreaView style={[styles.safeAreaView]}>
@@ -73,7 +84,7 @@ export default function OtpScreen() {
             </TouchableOpacity>
 
             {/* Action button  */}
-              <TouchableOpacity style={styles.actionBtn} onPress={()=> router.push("/")}>
+              <TouchableOpacity style={styles.actionBtn} onPress={()=> completeValidation()}>
                 <Text style={styles.btnColor}>Continue</Text>
               </TouchableOpacity>
 
