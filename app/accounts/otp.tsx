@@ -46,7 +46,7 @@ export default function OtpScreen() {
           {/* Page title  */}
           <Text style={styles.pageTitle}>Confirm Email</Text>
           {/* @ts-ignore : true  */}
-          <Text style={styles.subTitleText(textMuted)}>Join our community of experience a seamless vacation experience accross africa</Text>
+          <Text style={styles.subTitleText(textMuted)}>Enter the code we sent to your email address <Text>myemail123@gmail.com </Text></Text>
 
           {/* Form  */}
           <KeyboardAvoidingView
@@ -69,38 +69,7 @@ export default function OtpScreen() {
               />
             </View>
 
-             {/* Password  */}
-             <View style={styles.formView}>
-              <Text style={styles.formLabel}>Password </Text>
-
-              <View style={styles.passwordView}>
-
-                {/* Show password icon  */}
-                <TouchableOpacity style={styles.showPasswordIcon} onPress={() => setshowPassword((prevValue) => !prevValue)}>
-                  {showPassword ? 
-                    <Entypo name="eye-with-line" size={18} color="#bcbcbc" /> //Show eye closed when showPassword is true
-                    :
-                    <Entypo name="eye" size={18} color="#bcbcbc" /> //Show eye open when showPassword is false
-
-                  }
-              </TouchableOpacity>
-
-              {/* Password Text Input  */}
-              <TextInput
-                autoCapitalize="none"
-                autoComplete="password"
-                autoCorrect={false}
-                secureTextEntry={!showPassword} //If showPassword is false, then SecureTextEntey will be true and vice versa
-                returnKeyType="next"
-                placeholder='Enter your password'
-                //@ts-ignore : true
-                style={styles.formControl(borderColor)}
-                textContentType="password"
-              />
-              </View>
-            </View>
-
-            {/* Forgot password  */}
+            {/* Resend OTP  */}
             {/* @ts-ignore */}
             <Text style={styles.forgotPassword(textMuted)}>Forgot password?</Text>
 
@@ -112,39 +81,6 @@ export default function OtpScreen() {
 
 
               </KeyboardAvoidingView>
-
-              {/* OR Login With socials  */}
-              {/* @ts-ignore:true  */}
-              <Text style={styles.ORtext(textMuted)}>OR</Text>
-
-              {/* Social Button view  */}
-              <View style={styles.socialsBtnView}>
-
-                  {/* Google  */}
-                  {/* @ts-ignore:true  */}
-                  <TouchableOpacity style={styles.socialsBtn(borderColor)}>
-                    {/* @ts-ignore: true */}
-                    <Image source={require('../../assets/images/google.png')} style={styles.socialIcon}/>
-                     <Text style={styles.btnText}>Google</Text>
-                  </TouchableOpacity>
-
-                  {/* Facebook  */}
-                  {/* @ts-ignore:true  */}
-                  <TouchableOpacity style={styles.socialsBtn(borderColor)}>
-                    {/* @ts-ignore: true */}
-                    <Image source={require('../../assets/images/facebook.png')} style={styles.socialIcon}/>
-                    <Text style={styles.btnText}>Facebook</Text>
-                  </TouchableOpacity>
-
-              </View>
-
-               {/* Register text  */}
-              <View  style={styles.registerView}>
-
-                {/* @ts-ignore: true  */}
-                <Text style={styles.registerText(textMuted)}>Haven't registered yet?</Text>
-                <Link href={"/accounts/register"}><Text style={styles.registerLink}> Register</Text></Link>
-              </View>
 
 
 
