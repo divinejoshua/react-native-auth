@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
       termsOfServiceText : (color: string) =>({
         color : color,
         flex: 1,
+        letterSpacing:.3,
         maxWidth: '100%',
       }),
 

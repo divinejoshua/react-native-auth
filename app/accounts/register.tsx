@@ -138,7 +138,7 @@ export default function RegisterScreen() {
 
                     {/* @ts-ignore:true  */}
                     <Text style={styles.termsOfServiceText(textMuted)}>
-                        By agreeing to the term and conditions, you are entering into a legally binding contract with the service provider
+                        By agreeing to the term and conditions, you are entering into a legally binding contract with the service provider.
                     </Text>
                 </View>
 
