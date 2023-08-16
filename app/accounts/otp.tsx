@@ -28,6 +28,9 @@ export default function OtpScreen() {
   const [isError, setisError] = useState<boolean>(false)
   const [isLoading, setisLoading] = useState<boolean>(false)
   const [isDisabled, setisDisabled] = useState<boolean>(false)
+  const [firstValidate, setfirstValidate] = useState<boolean>(true)
+
+
   
   // Handle OTP 
   const validateOTP = () => {
@@ -61,23 +64,28 @@ export default function OtpScreen() {
   
 //   On completing validation check 
   const completeValidation = () => {
-    
-    validateOTP()           //Validate OTP code on front end
+    setfirstValidate(false) //Set firstValidate to false
+
+    // validateOTP()           //Validate OTP code on front end
    
      if(isError) { return }   // Return if error 
 
-
+    setisDisabled(true) //Set disabled to true 
     setisLoading(true)      // Set loading to true
+
+    // If all successful 
     setTimeout(() => {
-      setisLoading (false)
+      //NOTE 
+      // Set onboarded to '1' in async storage: This will make sure the user doesn't have to see the onboarding / Accounts screen after entering the app again
+      setItem('onboarded', '1');
+
+      //Redirect the user to home page
+      router.replace("/")
+
+
     }, 2000);
 
-    //NOTE 
-    // Set onboarded to '1' in async storage: This will make sure the user doesn't have to see the onboarding / Accounts screen after entering the app again
-    // setItem('onboarded', '1');
-
-    //Redirect the user to home page
-    // router.replace("/")
+   
   }
 
   useEffect(() => {
@@ -138,14 +146,14 @@ export default function OtpScreen() {
            
             {/* IF there is error  */}
 
-            { isError && 
+            { isError && !firstValidate ?
               <Text style={styles.errorMessage}>
                 <Entypo name="warning" size={16} color="#ef4444" /> Invalid OTP code
-              </Text>
+              </Text> : ""
             }
 
             {/* Action button  */}
-              <TouchableOpacity disabled={isDisabled} style={[styles.actionBtn, isError ? styles.disableBtn : {}]} onPress={()=> completeValidation()}>
+              <TouchableOpacity disabled={isDisabled} style={[styles.actionBtn, isDisabled ? styles.disableBtn : {}]} onPress={()=> completeValidation()}>
                 {
                   isLoading ? 
                     <ActivityIndicator size="small" />
