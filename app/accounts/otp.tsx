@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
+import { Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
 import { SafeAreaView, Text, View, TextInput } from '../../components/Themed'
 import styles from '../../constants/styles/accounts.style'
 import { Link, Stack, router } from 'expo-router'
@@ -20,6 +20,36 @@ export default function OtpScreen() {
   const backgroundMuted = currentTheme === "light" ? Colors.light.backgroundMuted :Colors.dark.backgroundMuted
   const borderColor = currentTheme === "light" ? Colors.light.borderColor :Colors.dark.borderColor
 
+
+  // Data 
+  const [otpValue, setotpValue] = useState<string>("")
+
+
+  
+  // Handle OTP 
+  const validateOTP = () => {
+
+    // Otp Digits 
+    let otpDigits 
+
+    // Convert the input value to a number 
+    let otpCode = parseInt(otpValue);
+
+    // Get the number of digits in the text input 
+    if (!isNaN(otpCode)) {
+      otpDigits = Math.abs(otpCode).toString().length;
+    }
+
+    // If successful 
+    if (otpDigits === 5) {
+      Alert.alert('Success', 'Login successful');
+    } 
+
+    // If errors 
+    else {
+      Alert.alert('Error', 'Login Error');
+    }
+  }
   
 //   On completing validation check 
   const completeValidation = () => {
@@ -65,6 +95,7 @@ export default function OtpScreen() {
             <View style={styles.formView}>
               <Text style={styles.formLabel}>OTP </Text>
               <TextInput
+                onChangeText={text => setotpValue(text)}
                 autoCapitalize="none"
                 autoComplete="one-time-code"
                 autoCorrect={false}
@@ -84,7 +115,7 @@ export default function OtpScreen() {
             </TouchableOpacity>
 
             {/* Action button  */}
-              <TouchableOpacity style={styles.actionBtn} onPress={()=> completeValidation()}>
+              <TouchableOpacity style={styles.actionBtn} onPress={()=> validateOTP()}>
                 <Text style={styles.btnColor}>Continue</Text>
               </TouchableOpacity>
 
