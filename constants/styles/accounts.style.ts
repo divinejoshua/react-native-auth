@@ -178,10 +178,19 @@ const styles = StyleSheet.create({
 
       resendCode :{
         color : '#3b82f6',
-        marginTop :10,
+        marginTop :15,
         textAlign : 'right',
         fontFamily : 'QuicksandSemiBold',
       },
+
+      errorMessage :{
+        color : '#ef4444',
+        textAlign : 'left',
+        marginTop : 10,
+        fontSize : 16,
+
+        
+      }
 
 })
 

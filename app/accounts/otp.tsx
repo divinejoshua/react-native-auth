@@ -25,11 +25,15 @@ export default function OtpScreen() {
 
   // Data 
   const [otpValue, setotpValue] = useState<string>("")
+  const [isError, setisError] = useState<boolean>(false)
+  const [isLoading, setisLoading] = useState<boolean>(false)
 
 
   
   // Handle OTP 
   const validateOTP = () => {
+    setisLoading(true)
+    setisError(false)  //Set isError to default
 
     // Otp Digits 
     let otpDigits 
@@ -44,15 +48,17 @@ export default function OtpScreen() {
 
     // If successful 
     if (otpDigits === 5) {
-      Alert.alert('Success', 'Login successful');
-      completeValidation()
+
+      setTimeout(() => {
+        setisLoading (false)
+        completeValidation()
+      }, 2000);
     } 
 
     // If errors 
     else {
-      Alert.alert('Error', 'Login Error');
-
-
+      setisError(true)
+      setisLoading (false)
     }
   }
   
@@ -60,10 +66,10 @@ export default function OtpScreen() {
   const completeValidation = () => {
     //NOTE 
     // Set onboarded to '1' in async storage: This will make sure the user doesn't have to see the onboarding / Accounts screen after entering the app again
-    setItem('onboarded', '1');
+    // setItem('onboarded', '1');
 
     //Redirect the user to home page
-    router.replace("/")
+    // router.replace("/")
   }
 
   return (
@@ -100,6 +106,7 @@ export default function OtpScreen() {
             <View style={styles.formView}>
               <Text style={styles.formLabel}>OTP </Text>
               <TextInput
+                onPressIn={()=> setisError(false)}
                 onChangeText={text => setotpValue(text)}
                 autoCapitalize="none"
                 autoComplete="one-time-code"
@@ -113,22 +120,25 @@ export default function OtpScreen() {
               />
             </View>
 
-            {/* Resend OTP  */}
-            {/* @ts-ignore */}
-            <TouchableOpacity>
-                <Text style={styles.resendCode}>Send code again </Text>
-            </TouchableOpacity>
+           
+            {/* IF there is error  */}
 
-            <Button
-        onPress={() => { }}
-        title="Request Details"
-        color="#841584"
-      />
+            { isError && 
+              <Text style={styles.errorMessage}>
+                <Entypo name="warning" size={16} color="#ef4444" /> Invalid OTP code
+              </Text>
+            }
 
             {/* Action button  */}
               <TouchableOpacity style={styles.actionBtn} onPress={()=> validateOTP()}>
                 <Text style={styles.btnColor}>Continue</Text>
               </TouchableOpacity>
+
+              {/* Resend OTP  */}
+              <TouchableOpacity>
+                <Text style={styles.resendCode}>Send code again </Text>
+              </TouchableOpacity>
+
 
 
               </KeyboardAvoidingView>
