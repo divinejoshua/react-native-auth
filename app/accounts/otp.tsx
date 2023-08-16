@@ -6,8 +6,7 @@ import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useState } from 'react';
 import { setItem } from '../../utils/asyncStorage';
-import { showMessage, hideMessage } from "react-native-flash-message";
-import FlashMessage from "react-native-flash-message";
+
 
 
 
@@ -46,17 +45,13 @@ export default function OtpScreen() {
     // If successful 
     if (otpDigits === 5) {
       Alert.alert('Success', 'Login successful');
+      completeValidation()
     } 
 
     // If errors 
     else {
-      // Alert.alert('Error', 'Login Error');
+      Alert.alert('Error', 'Login Error');
 
-      showMessage({
-        message: "Simple message",
-        description: "This is our second message",
-        type: "danger",
-      });
 
     }
   }
@@ -65,10 +60,10 @@ export default function OtpScreen() {
   const completeValidation = () => {
     //NOTE 
     // Set onboarded to '1' in async storage: This will make sure the user doesn't have to see the onboarding / Accounts screen after entering the app again
-    // setItem('onboarded', '1');
+    setItem('onboarded', '1');
 
     //Redirect the user to home page
-    // router.replace("/")
+    router.replace("/")
   }
 
   return (
@@ -87,7 +82,6 @@ export default function OtpScreen() {
               headerTitle: "",
           }}
         />
-      <FlashMessage position="top"  floating={true}/>
 
         {/* Main container  */}
         <ScrollView style={styles.container}>
@@ -126,13 +120,7 @@ export default function OtpScreen() {
             </TouchableOpacity>
 
             <Button
-        onPress={() => {
-          /* HERE IS WHERE WE'RE GOING TO SHOW OUR FIRST MESSAGE */
-          showMessage({
-            message: "Simple message",
-            type: "info",
-          });
-        }}
+        onPress={() => { }}
         title="Request Details"
         color="#841584"
       />
