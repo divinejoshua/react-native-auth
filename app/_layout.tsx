@@ -70,7 +70,7 @@ function RootLayoutNav() {
         <Stack.Screen name="accounts/onboarding" options={{ headerShown: false }} />
         <Stack.Screen name="accounts/login" />
         <Stack.Screen name="accounts/register" />
-        <Stack.Screen name="accounts/otp" />
+        <Stack.Screen name="accounts/otp" options={{ presentation: 'modal' }} />
       </Stack>
     </ThemeProvider>
   );

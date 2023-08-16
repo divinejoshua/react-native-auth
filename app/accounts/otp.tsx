@@ -80,7 +80,7 @@ export default function OtpScreen() {
                 backgroundColor: backgroundColor,
               },
               headerLeft: () => (
-                  <TouchableOpacity style={[styles.backButton, {backgroundColor : backgroundMuted}]}>
+                  <TouchableOpacity style={[styles.backButton, {backgroundColor : backgroundMuted}]} onPress={()=> router.back()}>
                     <Entypo name="chevron-left" size={20} color={textColor}/>
                   </TouchableOpacity>
               ),
