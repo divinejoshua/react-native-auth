@@ -87,7 +87,7 @@ export default function OtpScreen() {
               headerTitle: "",
           }}
         />
-      <FlashMessage position="top"  style={{position : 'fixed'}}/>
+      <FlashMessage position="top"  floating={true}/>
 
         {/* Main container  */}
         <ScrollView style={styles.container}>
