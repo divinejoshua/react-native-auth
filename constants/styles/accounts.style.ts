@@ -187,10 +187,12 @@ const styles = StyleSheet.create({
         color : '#ef4444',
         textAlign : 'left',
         marginTop : 10,
-        fontSize : 16,
+        fontSize : 16,        
+      },
 
-        
-      }
+      disableBtn : {
+        backgroundColor : 'rgba(59, 130, 246, 0.2)',
+    },
 
 })
 

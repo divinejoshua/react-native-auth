@@ -4,7 +4,7 @@ import styles from '../../constants/styles/accounts.style'
 import { Link, Stack, router } from 'expo-router'
 import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { setItem } from '../../utils/asyncStorage';
 
 
@@ -27,12 +27,15 @@ export default function OtpScreen() {
   const [otpValue, setotpValue] = useState<string>("")
   const [isError, setisError] = useState<boolean>(false)
   const [isLoading, setisLoading] = useState<boolean>(false)
+  const [isDisabled, setisDisabled] = useState<boolean>(false)
+  const [firstValidate, setfirstValidate] = useState<boolean>(true)
 
 
   
   // Handle OTP 
   const validateOTP = () => {
-    setisLoading(true)
+    
+    setisDisabled(true)
     setisError(false)  //Set isError to default
 
     // Otp Digits 
@@ -48,22 +51,28 @@ export default function OtpScreen() {
 
     // If successful 
     if (otpDigits === 5) {
-
-      setTimeout(() => {
-        setisLoading (false)
-        completeValidation()
-      }, 2000);
+      setisError(false)
     } 
 
     // If errors 
     else {
       setisError(true)
-      setisLoading (false)
+      setisDisabled(true)
     }
   }
   
 //   On completing validation check 
   const completeValidation = () => {
+    
+    setfirstValidate(false)
+    setisLoading(true)
+
+    if(isError) { return }
+
+    setTimeout(() => {
+      setisLoading (false)
+    }, 2000);
+
     //NOTE 
     // Set onboarded to '1' in async storage: This will make sure the user doesn't have to see the onboarding / Accounts screen after entering the app again
     // setItem('onboarded', '1');
@@ -71,6 +80,15 @@ export default function OtpScreen() {
     //Redirect the user to home page
     // router.replace("/")
   }
+
+  useEffect(() => {
+
+    if(!firstValidate){
+      validateOTP()
+    }
+
+  }, [otpValue, firstValidate])
+  
 
   return (
     <SafeAreaView style={[styles.safeAreaView]}>
@@ -106,7 +124,6 @@ export default function OtpScreen() {
             <View style={styles.formView}>
               <Text style={styles.formLabel}>OTP </Text>
               <TextInput
-                onPressIn={()=> setisError(false)}
                 onChangeText={text => setotpValue(text)}
                 autoCapitalize="none"
                 autoComplete="one-time-code"
@@ -130,7 +147,7 @@ export default function OtpScreen() {
             }
 
             {/* Action button  */}
-              <TouchableOpacity style={styles.actionBtn} onPress={()=> validateOTP()}>
+              <TouchableOpacity disabled={isDisabled} style={[styles.actionBtn, isError ? styles.disableBtn : {}]} onPress={()=> completeValidation()}>
                 <Text style={styles.btnColor}>Continue</Text>
               </TouchableOpacity>
 
