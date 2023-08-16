@@ -1,4 +1,4 @@
-import { Alert, Button, KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
+import { ActivityIndicator, Alert, Button, KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
 import { SafeAreaView, Text, View, TextInput } from '../../components/Themed'
 import styles from '../../constants/styles/accounts.style'
 import { Link, Stack, router } from 'expo-router'
@@ -28,9 +28,6 @@ export default function OtpScreen() {
   const [isError, setisError] = useState<boolean>(false)
   const [isLoading, setisLoading] = useState<boolean>(false)
   const [isDisabled, setisDisabled] = useState<boolean>(false)
-  const [firstValidate, setfirstValidate] = useState<boolean>(true)
-
-
   
   // Handle OTP 
   const validateOTP = () => {
@@ -52,6 +49,7 @@ export default function OtpScreen() {
     // If successful 
     if (otpDigits === 5) {
       setisError(false)
+      setisDisabled(false)
     } 
 
     // If errors 
@@ -64,11 +62,12 @@ export default function OtpScreen() {
 //   On completing validation check 
   const completeValidation = () => {
     
-    setfirstValidate(false)
-    setisLoading(true)
+    validateOTP()           //Validate OTP code on front end
+   
+     if(isError) { return }   // Return if error 
 
-    if(isError) { return }
 
+    setisLoading(true)      // Set loading to true
     setTimeout(() => {
       setisLoading (false)
     }, 2000);
@@ -83,11 +82,10 @@ export default function OtpScreen() {
 
   useEffect(() => {
 
-    if(!firstValidate){
+    // Auto validate after first Validation 
       validateOTP()
-    }
 
-  }, [otpValue, firstValidate])
+  }, [otpValue])
   
 
   return (
@@ -148,7 +146,14 @@ export default function OtpScreen() {
 
             {/* Action button  */}
               <TouchableOpacity disabled={isDisabled} style={[styles.actionBtn, isError ? styles.disableBtn : {}]} onPress={()=> completeValidation()}>
-                <Text style={styles.btnColor}>Continue</Text>
+                {
+                  isLoading ? 
+                    <ActivityIndicator size="small" />
+                  :
+                    <Text style={styles.btnColor}>Continue</Text>
+                }
+                
+                
               </TouchableOpacity>
 
               {/* Resend OTP  */}
