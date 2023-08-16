@@ -1,4 +1,4 @@
-import { Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
+import { Alert, Button, KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
 import { SafeAreaView, Text, View, TextInput } from '../../components/Themed'
 import styles from '../../constants/styles/accounts.style'
 import { Link, Stack, router } from 'expo-router'
@@ -6,6 +6,9 @@ import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useState } from 'react';
 import { setItem } from '../../utils/asyncStorage';
+import { showMessage, hideMessage } from "react-native-flash-message";
+import FlashMessage from "react-native-flash-message";
+
 
 
 export default function OtpScreen() {
@@ -47,7 +50,14 @@ export default function OtpScreen() {
 
     // If errors 
     else {
-      Alert.alert('Error', 'Login Error');
+      // Alert.alert('Error', 'Login Error');
+
+      showMessage({
+        message: "Simple message",
+        description: "This is our second message",
+        type: "danger",
+      });
+
     }
   }
   
@@ -77,6 +87,7 @@ export default function OtpScreen() {
               headerTitle: "",
           }}
         />
+      <FlashMessage position="top"  style={{position : 'fixed'}}/>
 
         {/* Main container  */}
         <ScrollView style={styles.container}>
@@ -113,6 +124,18 @@ export default function OtpScreen() {
             <TouchableOpacity>
                 <Text style={styles.resendCode}>Send code again </Text>
             </TouchableOpacity>
+
+            <Button
+        onPress={() => {
+          /* HERE IS WHERE WE'RE GOING TO SHOW OUR FIRST MESSAGE */
+          showMessage({
+            message: "Simple message",
+            type: "info",
+          });
+        }}
+        title="Request Details"
+        color="#841584"
+      />
 
             {/* Action button  */}
               <TouchableOpacity style={styles.actionBtn} onPress={()=> validateOTP()}>
