@@ -25,10 +25,10 @@ export default function OtpScreen() {
   const completeValidation = () => {
     //NOTE 
     // Set onboarded to '1' in async storage: This will make sure the user doesn't have to see the onboarding / Accounts screen after entering the app again
-    setItem('onboarded', '1');
+    // setItem('onboarded', '1');
 
     //Redirect the user to home page
-    router.replace("/")
+    // router.replace("/")
   }
 
   return (
