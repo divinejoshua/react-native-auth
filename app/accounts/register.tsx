@@ -96,7 +96,7 @@ export default function RegisterScreen() {
 
         {/* Main container  */}
         <ScrollView style={styles.container}>
-          
+
           {/* Page title  */}
           <Text style={styles.pageTitle}>Create Account</Text>
           {/* @ts-ignore : true  */}
