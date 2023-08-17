@@ -49,7 +49,7 @@ export default function LoginScreen() {
       // Validate email format 
       setformData((prevData) => ({
         ...prevData,  
-        emailError: validateEmailFormart(formData.email) ? '' : 'Invalid email format', }));  //Validate email format
+        emailError: validateEmailFormart(formData.email) ? "" : 'Invalid email format', }));  //Validate email format
 
     }
 
@@ -75,8 +75,8 @@ export default function LoginScreen() {
   useEffect(() => {
     
     // Auto validate after first Validation 
-      validateForm()
       validateFormWatcher()
+      validateForm()
 
   }, [formData.email, formData.password])
   
