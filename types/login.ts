@@ -1,7 +1,7 @@
 export interface LoginForm {
-    email       : string;
-    password    : string;
-    errors      : FormErrors[];
+    email?       : string;
+    password?    : string;
+    errors?      : FormErrors[];
 }
 
 export interface FormErrors {
