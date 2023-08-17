@@ -6,8 +6,12 @@ import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Image } from 'expo-image';
+import { LoginForm } from '../../types/login';
 
 
+interface LoginProps {
+  loginForm: LoginForm;
+}
 
 
 export default function LoginScreen() {
@@ -21,8 +25,11 @@ export default function LoginScreen() {
   const borderColor = currentTheme === "light" ? Colors.light.borderColor :Colors.dark.borderColor
 
   //Data
+  const [formData, setformData] = useState<LoginProps[]>([])
   const [showPassword, setshowPassword] = useState<boolean>(false)     
 
+
+  
   return (
     <SafeAreaView style={[styles.safeAreaView]}>
         <Stack.Screen
