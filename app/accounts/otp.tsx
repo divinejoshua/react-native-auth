@@ -40,7 +40,8 @@ export default function OtpScreen() {
   // Handle OTP 
   const validateOTP = () => {
     
-    setisDisabled(true)
+    setisDisabled(otpValue ? false : true) //set disable to true depending if OTP has a value 
+    
     setisError(false)  //Set isError to default
 
     // Otp Digits 
@@ -57,13 +58,11 @@ export default function OtpScreen() {
     // If successful 
     if (otpDigits === 5) {
       setisError(false)
-      setisDisabled(false)
     } 
 
     // If errors 
     else {
       setisError(true)
-      setisDisabled(true)
     }
   }
   
@@ -175,7 +174,7 @@ export default function OtpScreen() {
               <TouchableOpacity disabled={isDisabled} style={[styles.actionBtn, isDisabled ? styles.disableBtn : {}]} onPress={()=> completeValidation()}>
                 {
                   isLoading ? 
-                    <ActivityIndicator size="small" />
+                    <ActivityIndicator size="small" color={"#fff"} />
                   :
                     <Text style={styles.btnColor}>Continue</Text>
                 }

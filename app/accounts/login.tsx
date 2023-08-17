@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
+import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
 import { SafeAreaView, Text, View, TextInput } from '../../components/Themed'
 import styles from '../../constants/styles/accounts.style'
 import { Link, Stack, router } from 'expo-router'
@@ -6,7 +6,7 @@ import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { Image } from 'expo-image';
-import { validateEmailFormart } from '../../utils/validateForm';
+import { validateEmailFormat } from '../../utils/validateForm';
 
 interface iFormData {
   email         : string;
@@ -43,10 +43,18 @@ export default function LoginScreen() {
 
     // Handle OTP 
     const validateForm = () => {
+      
       // Validate email format 
       setformData((prevData) => ({
         ...prevData,  
-        emailError: validateEmailFormart(formData.email) ? "" : 'Invalid email format', }));  //Validate email format
+        emailError: validateEmailFormat(formData.email) ? "" : 'Invalid email format', 
+      }));  //Validate email format
+
+      // Validate password [required ]
+      setformData((prevData) => ({
+        ...prevData,  
+        passwordError: formData.password ? "" : 'Password is required', 
+      }));  //Validate password required
 
     }
 
@@ -55,15 +63,11 @@ export default function LoginScreen() {
 
     // Set hasErrors to true if any firld has erros 
     setformData((prevData) => ({...prevData, 
-      hasErrors: formData.emailError === "" ? false : true
+      hasErrors: formData.emailError === "" &&  formData.passwordError === "" ? false : true
     }));  //Set form has erros to false
 
-    // Disable button if errors 
-    // if(formData.hasErrors) {
-    //   setisDisabled(true)
-    // } else {
-    //   setisDisabled(false)
-    // }
+    // Set disabled if all fields are not available 
+    setisDisabled(formData.email && formData.password ? false : true)
 
   }
 
@@ -76,8 +80,19 @@ export default function LoginScreen() {
 
     if(formData.hasErrors) { return }   // Return if error 
 
+    setisDisabled(true) //Set disabled to true 
+    setisLoading(true)   // Set loading to true
 
-    // router.push("/accounts/otp")
+    // If all successful 
+    setTimeout(() => {
+      router.push("/accounts/otp") //Move to OTP page
+
+      setisDisabled(false) //Set disabled to true 
+      setisLoading(false)   // Set loading to true
+
+    }, 2000);
+
+
   }
 
 
@@ -88,8 +103,7 @@ export default function LoginScreen() {
       validateForm()
       validateFormWatcher()
 
-
-  }, [formData.email, formData.password, formData.emailError, formData.hasErrors])
+  }, [formData.email, formData.password, formData.emailError, formData.passwordError, formData.hasErrors])
   
   
   
@@ -145,10 +159,8 @@ export default function LoginScreen() {
               />
             </View>
 
-            {/* <Text>{formData.emailError}</Text> */}
 
-
-            { formData.hasErrors && !firstValidate?
+            { formData.emailError && !firstValidate?
               <Text style={styles.errorMessage}>
                 <Entypo name="warning" size={16} color="#ef4444" /> { formData.emailError}
               </Text> : ""
@@ -191,6 +203,13 @@ export default function LoginScreen() {
               </View>
             </View>
 
+            { formData.passwordError && !firstValidate?
+              <Text style={styles.errorMessage}>
+                <Entypo name="warning" size={16} color="#ef4444" /> { formData.passwordError}
+              </Text> : ""
+            }
+
+
             {/* Forgot password  */}
             {/* @ts-ignore */}
             <Text style={styles.forgotPassword(textMuted)}>Forgot password?</Text>
@@ -198,7 +217,12 @@ export default function LoginScreen() {
 
             {/* Action button  */}
               <TouchableOpacity  disabled={isDisabled} style={[styles.actionBtn, isDisabled ? styles.disableBtn : {}]}  onPress={()=> handleLogin()}>
-                <Text style={styles.btnColor}>Continue</Text>
+                {
+                    isLoading ? 
+                      <ActivityIndicator size="small" color={"#fff"}/>
+                    :
+                      <Text style={styles.btnColor}>Continue</Text>
+                }
               </TouchableOpacity>
 
 
