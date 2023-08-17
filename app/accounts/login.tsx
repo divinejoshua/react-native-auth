@@ -8,6 +8,12 @@ import { useState } from 'react';
 import { Image } from 'expo-image';
 
 
+interface FormData {
+  email: string;
+  password: string;
+  hasErrors: boolean;
+}
+
 export default function LoginScreen() {
 
   // Get theme 
@@ -19,17 +25,14 @@ export default function LoginScreen() {
   const borderColor = currentTheme === "light" ? Colors.light.borderColor :Colors.dark.borderColor
 
   //Data
-  const [formData, setformData] = useState<{}>({
+  const [formData, setformData] = useState<FormData>({
     email : "",
     password : "",
     hasErrors : false,
   })
 
   const [showPassword, setshowPassword] = useState<boolean>(false)   
-  
 
-
-  
   
 
 
@@ -58,6 +61,9 @@ export default function LoginScreen() {
 
         {/* Main container  */}
         <ScrollView style={styles.container}>
+
+          <Text>{formData.email}</Text>
+          <Text>{formData.password}</Text>
           
           {/* Page title  */}
           <Text style={styles.pageTitle}>Login</Text>
@@ -73,6 +79,12 @@ export default function LoginScreen() {
             <View style={styles.formView}>
               <Text style={styles.formLabel}>Email </Text>
               <TextInput
+               onChangeText={text => {
+                  setformData({
+                    ...formData, // Spread the existing data to preserve other fields
+                    email: text // Update the email field
+                  });
+               }}
                 autoCapitalize="none"
                 autoComplete="email"
                 autoCorrect={false}
@@ -103,6 +115,12 @@ export default function LoginScreen() {
 
               {/* Password Text Input  */}
               <TextInput
+                onChangeText={text => {
+                    setformData({
+                      ...formData, // Spread the existing data to preserve other fields
+                      password: text // Update the email field
+                    });
+                }}
                 autoCapitalize="none"
                 autoComplete="password"
                 autoCorrect={false}
