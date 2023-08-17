@@ -43,9 +43,6 @@ export default function LoginScreen() {
 
     // Handle OTP 
     const validateForm = () => {
-    
-      setisDisabled(true)
-
       // Validate email format 
       setformData((prevData) => ({
         ...prevData,  
@@ -55,18 +52,31 @@ export default function LoginScreen() {
 
   // Form validation watcher 
   const validateFormWatcher = ()=> {
-    // If form error, sent the hasErrors to true and if no error, set hasErrors to true 
-    if (formData.emailError === "" || formData.passwordError === ""){
-      setformData((prevData) => ({...prevData, hasErrors: false, }));  //Set form has erros to false
-    } else {
-      setformData((prevData) => ({...prevData, hasErrors: true, }));     //Set iform has erros to trye
-    }
+
+    // Set hasErrors to true if any firld has erros 
+    setformData((prevData) => ({...prevData, 
+      hasErrors: formData.emailError === "" ? false : true
+    }));  //Set form has erros to false
+
+    // Disable button if errors 
+    // if(formData.hasErrors) {
+    //   setisDisabled(true)
+    // } else {
+    //   setisDisabled(false)
+    // }
+
   }
 
 
 
+  // Handle login 
   const handleLogin =() =>{
+
     setfirstValidate(false)   //Set firstValidate to false
+
+    if(formData.hasErrors) { return }   // Return if error 
+
+
     // router.push("/accounts/otp")
   }
 
@@ -75,10 +85,11 @@ export default function LoginScreen() {
   useEffect(() => {
     
     // Auto validate after first Validation 
-      validateFormWatcher()
       validateForm()
+      validateFormWatcher()
 
-  }, [formData.email, formData.password])
+
+  }, [formData.email, formData.password, formData.emailError, formData.hasErrors])
   
   
   
@@ -134,9 +145,12 @@ export default function LoginScreen() {
               />
             </View>
 
-            { formData.hasErrors ===true && !firstValidate?
+            {/* <Text>{formData.emailError}</Text> */}
+
+
+            { formData.hasErrors && !firstValidate?
               <Text style={styles.errorMessage}>
-                <Entypo name="warning" size={16} color="#ef4444" />{ formData.emailError}
+                <Entypo name="warning" size={16} color="#ef4444" /> { formData.emailError}
               </Text> : ""
             }
 
@@ -183,7 +197,7 @@ export default function LoginScreen() {
 
 
             {/* Action button  */}
-              <TouchableOpacity style={styles.actionBtn}  onPress={()=> handleLogin()}>
+              <TouchableOpacity  disabled={isDisabled} style={[styles.actionBtn, isDisabled ? styles.disableBtn : {}]}  onPress={()=> handleLogin()}>
                 <Text style={styles.btnColor}>Continue</Text>
               </TouchableOpacity>
 
