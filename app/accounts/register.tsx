@@ -6,7 +6,7 @@ import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import Checkbox from 'expo-checkbox';
-import { validateEmailFormat, validatePasswordFormat } from '../../utils/validateForm';
+import { validateEmailFormat, validatePasswordFormat, validateUsernameFormat } from '../../utils/validateForm';
 
 interface iFormData {
   username              : string;
@@ -55,6 +55,12 @@ export default function RegisterScreen() {
 
     // Validate form
     const validateForm = () => {
+
+      // Validate email format 
+      setformData((prevData) => ({
+        ...prevData,  
+        usernameError: validateUsernameFormat(formData.username) ? "" : '3 - 15 characters. Can include [-_.]', 
+      }));  //Validate username format
     
       // Validate email format 
       setformData((prevData) => ({
@@ -68,7 +74,30 @@ export default function RegisterScreen() {
         passwordError: validatePasswordFormat(formData.password)?  "" : 'Password Must contain at least 6 characters with at least one number and at least one special character', 
       }));  //Validate password required
 
+      // Validate password [required ]
+      setformData((prevData) => ({
+        ...prevData,  
+        confirmPasswordError: formData.confirmPassword === formData.password ?  "" : 'Passwords do not match', 
+      }));  //Validate confirm password
+
     }
+
+
+  // Form validation watcher 
+  const validateFormWatcher = ()=> {
+
+    // Set hasErrors to true if any firld has erros 
+    setformData((prevData) => ({...prevData, 
+      hasErrors: 
+        formData.usernameError === "" &&  formData.emailError === "" &&  formData.passwordError === "" && formData.confirmPasswordError === ""  && isChecked === true
+      ? false : true
+    }));  //Set form has erros to false
+
+    // Set disabled if all fields are not available 
+    setisDisabled(formData.username &&  formData.email && formData.password && formData.confirmPassword   && isChecked===true ? false : true)
+
+  }
+
 
 
 
@@ -85,7 +114,7 @@ export default function RegisterScreen() {
 
     // If all successful 
     setTimeout(() => {
-      // router.push("/accounts/otp") //Move to OTP page
+      router.push("/accounts/otp") //Move to OTP page
 
       setisDisabled(false) //Set disabled to true 
       setisLoading(false)   // Set loading to true
@@ -101,11 +130,9 @@ export default function RegisterScreen() {
   
     // Auto validate after first Validation 
       validateForm()
-      // validateFormWatcher()
+      validateFormWatcher()
 
-      console.log(validatePasswordFormat(formData.password))
-
-  }, [formData.email, formData.password, formData.emailError, formData.passwordError, formData.hasErrors])
+  }, [formData.username, formData.email, formData.password, formData.confirmPassword, formData.usernameError, formData.emailError, formData.passwordError, formData.confirmPasswordError, formData.hasErrors, isChecked])
   
     
 
@@ -137,7 +164,7 @@ export default function RegisterScreen() {
 
           {/* Form  */}
           <KeyboardAvoidingView
-            // keyboardVerticalOffset={100}
+            keyboardVerticalOffset={100}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           >
 
@@ -163,6 +190,16 @@ export default function RegisterScreen() {
               />
             </View>
 
+            {/* Error message  */}
+            { formData.usernameError && !firstValidate?
+              <Text style={styles.errorMessage}>
+                <Entypo name="warning" size={16} color="#ef4444" /> { formData.usernameError}
+              </Text> : ""
+            }
+
+
+
+
 
             {/* Email  */}
             <View style={styles.formView}>
@@ -187,11 +224,11 @@ export default function RegisterScreen() {
             </View>
 
               {/* Error message  */}
-            { formData.emailError && !firstValidate?
-              <Text style={styles.errorMessage}>
-                <Entypo name="warning" size={16} color="#ef4444" /> { formData.emailError}
-              </Text> : ""
-            }
+              { formData.emailError && !firstValidate?
+                <Text style={styles.errorMessage}>
+                  <Entypo name="warning" size={16} color="#ef4444" /> { formData.emailError}
+                </Text> : ""
+              }
 
             
 
@@ -251,6 +288,13 @@ export default function RegisterScreen() {
                 />
                 </View>
 
+                {/* Error message  */}
+                { formData.confirmPasswordError && !firstValidate?
+                  <Text style={styles.errorMessage}>
+                    <Entypo name="warning" size={16} color="#ef4444" /> { formData.confirmPasswordError}
+                  </Text> : ""
+                }
+
 
                 {/* Terms of service  */}
                 <View style={styles.checkboxView}>
@@ -266,6 +310,13 @@ export default function RegisterScreen() {
                         By agreeing to the <Text style={styles.link}>term of service</Text>, you are entering into a legally binding contract with the service provider.
                     </Text>
                 </View>
+
+                {/* Error message  */}
+                { formData.hasErrors && !firstValidate && isChecked ===false?
+                  <Text style={styles.errorMessage}>
+                    <Entypo name="warning" size={16} color="#ef4444" /> Agree to terms of service
+                  </Text> : ""
+                }
 
 
                 { /* Action button  */}
