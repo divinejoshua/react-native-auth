@@ -34,7 +34,7 @@ export default function RegisterScreen() {
 
   //Data
   const [showPassword, setshowPassword] = useState<boolean>(false)     
-  const [isChecked, setChecked] = useState<boolean>(false)   
+  const [isChecked, setChecked] = useState<boolean>(false)   //This is the terms and conditions checkbox value
 
   const [formData, setformData] = useState<iFormData>({
       username: "",
@@ -51,6 +51,31 @@ export default function RegisterScreen() {
   const [isLoading, setisLoading] = useState<boolean>(false)
   const [isDisabled, setisDisabled] = useState<boolean>(false)
   const [firstValidate, setfirstValidate] = useState<boolean>(true)
+
+
+
+  // Handle Register 
+  const handleRegister  =() =>{
+
+    setfirstValidate(false)   //Set firstValidate to false
+
+    if(formData.hasErrors) { return }   // Return if error 
+
+    setisDisabled(true) //Set disabled to true 
+    setisLoading(true)   // Set loading to true
+
+    // If all successful 
+    setTimeout(() => {
+      router.push("/accounts/otp") //Move to OTP page
+
+      setisDisabled(false) //Set disabled to true 
+      setisLoading(false)   // Set loading to true
+
+    }, 2000);
+
+
+  }
+
 
   return (
     <SafeAreaView style={[styles.safeAreaView]}>
@@ -87,6 +112,12 @@ export default function RegisterScreen() {
             <View style={styles.formView}>
               <Text style={styles.formLabel}>Username </Text>
               <TextInput
+                onChangeText={text => {
+                    setformData({
+                      ...formData,
+                      username: text
+                    });
+                }}
                 autoCapitalize="none"
                 autoComplete="username"
                 autoCorrect={false}
@@ -104,6 +135,12 @@ export default function RegisterScreen() {
             <View style={styles.formView}>
               <Text style={styles.formLabel}>Email </Text>
               <TextInput
+                onChangeText={text => {
+                  setformData({
+                    ...formData,
+                    email: text
+                  });
+                }}
                 autoCapitalize="none"
                 autoComplete="email"
                 autoCorrect={false}
@@ -123,6 +160,12 @@ export default function RegisterScreen() {
 
                 {/* Password Text Input  */}
                 <TextInput
+                    onChangeText={text => {
+                      setformData({
+                        ...formData,
+                        password: text
+                      });
+                    }}
                     autoCapitalize="none"
                     autoComplete="password"
                     autoCorrect={false}
@@ -142,6 +185,12 @@ export default function RegisterScreen() {
 
                 {/* Password Text Input  */}
                 <TextInput
+                    onChangeText={text => {
+                      setformData({
+                        ...formData,
+                        username: text
+                      });
+                    }}
                     autoCapitalize="none"
                     autoComplete="password"
                     autoCorrect={false}
