@@ -9,11 +9,6 @@ import { Image } from 'expo-image';
 import { LoginForm } from '../../types/login';
 
 
-interface LoginProps {
-  loginForm: LoginForm;
-}
-
-
 export default function LoginScreen() {
 
   // Get theme 
@@ -25,7 +20,7 @@ export default function LoginScreen() {
   const borderColor = currentTheme === "light" ? Colors.light.borderColor :Colors.dark.borderColor
 
   //Data
-  const [formData, setformData] = useState<LoginProps[]>([])
+  const [formData, setformData] = useState<LoginForm[]>([])
   const [showPassword, setshowPassword] = useState<boolean>(false)     
 
 
