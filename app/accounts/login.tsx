@@ -47,7 +47,7 @@ export default function LoginScreen() {
       // Validate email format 
       setformData((prevData) => ({
         ...prevData,  
-        emailError: validateEmailFormat(formData.email) ? "" : 'Invalid email format', 
+        emailError: validateEmailFormat(formData.email) ? "" : 'Invalid email address', 
       }));  //Validate email format
 
       // Validate password [required ]
