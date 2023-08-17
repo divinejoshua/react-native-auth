@@ -7,6 +7,11 @@ import { Entypo } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { setItem } from '../../utils/asyncStorage';
 
+// Flash message 
+import { showMessage, hideMessage } from "react-native-flash-message";
+import FlashMessage from "react-native-flash-message";
+
+
 
 
 
@@ -82,10 +87,20 @@ export default function OtpScreen() {
       //Redirect the user to home page
       router.replace("/")
 
-
     }, 2000);
 
-   
+  }
+
+
+  // Resend OTP 
+  const resendOTP = () =>{
+      // Show flash message 
+      showMessage({
+        message: "OTP resent successfully",
+        description: "We have resent a 5 digit OTP to your email",
+        type: "success",
+        backgroundColor: "#22c55e", // background color
+      });
   }
 
   useEffect(() => {
@@ -97,6 +112,10 @@ export default function OtpScreen() {
   
 
   return (
+    <>
+    
+    <FlashMessage position="bottom"/>
+
     <SafeAreaView style={[styles.safeAreaView]}>
         <Stack.Screen
           options={{
@@ -165,7 +184,7 @@ export default function OtpScreen() {
               </TouchableOpacity>
 
               {/* Resend OTP  */}
-              <TouchableOpacity>
+              <TouchableOpacity onPress={()=> resendOTP()}>
                 <Text style={styles.resendCode}>Send code again </Text>
               </TouchableOpacity>
 
@@ -179,5 +198,6 @@ export default function OtpScreen() {
 
 
     </SafeAreaView>
+    </>
   )
 }
