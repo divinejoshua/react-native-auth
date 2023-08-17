@@ -4,8 +4,9 @@ import styles from '../../constants/styles/accounts.style'
 import { Link, Stack, router } from 'expo-router'
 import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Checkbox from 'expo-checkbox';
+import { validateEmailFormat } from '../../utils/validateForm';
 
 interface iFormData {
   username              : string;
@@ -18,8 +19,6 @@ interface iFormData {
   passwordError         : string;
   confirmPasswordError  : string;
 }
-
-
 
 
 export default function RegisterScreen() {
@@ -54,6 +53,26 @@ export default function RegisterScreen() {
 
 
 
+    // Validate form
+    const validateForm = () => {
+    
+      // Validate email format 
+      setformData((prevData) => ({
+        ...prevData,  
+        emailError: validateEmailFormat(formData.email) ? "" : 'Invalid email format', 
+      }));  //Validate email format
+
+      // Validate password [required ]
+      setformData((prevData) => ({
+        ...prevData,  
+        passwordError: formData.password ? "" : 'Password is required', 
+      }));  //Validate password required
+
+    }
+
+
+
+
   // Handle Register 
   const handleRegister  =() =>{
 
@@ -75,6 +94,18 @@ export default function RegisterScreen() {
 
 
   }
+
+
+  // Use effect 
+  useEffect(() => {
+  
+    // Auto validate after first Validation 
+      validateForm()
+      // validateFormWatcher()
+
+  }, [formData.email, formData.password, formData.emailError, formData.passwordError, formData.hasErrors])
+  
+    
 
 
   return (
@@ -104,7 +135,7 @@ export default function RegisterScreen() {
 
           {/* Form  */}
           <KeyboardAvoidingView
-            keyboardVerticalOffset={100}
+            // keyboardVerticalOffset={100}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           >
 
@@ -152,6 +183,14 @@ export default function RegisterScreen() {
                 textContentType="emailAddress"
               />
             </View>
+
+              {/* Error message  */}
+            { formData.emailError && !firstValidate?
+              <Text style={styles.errorMessage}>
+                <Entypo name="warning" size={16} color="#ef4444" /> { formData.emailError}
+              </Text> : ""
+            }
+
             
 
                 {/* Password  */}
@@ -178,6 +217,13 @@ export default function RegisterScreen() {
                 />
                 </View>
 
+                {/* Error message  */}
+                { formData.passwordError && !firstValidate?
+                  <Text style={styles.errorMessage}>
+                    <Entypo name="warning" size={16} color="#ef4444" /> { formData.passwordError}
+                  </Text> : ""
+                }
+
 
                 {/* Confirm Password  */}
                 <View style={styles.formView}>
@@ -188,7 +234,7 @@ export default function RegisterScreen() {
                     onChangeText={text => {
                       setformData({
                         ...formData,
-                        username: text
+                        confirmPassword: text
                       });
                     }}
                     autoCapitalize="none"
@@ -202,6 +248,7 @@ export default function RegisterScreen() {
                     textContentType="password"
                 />
                 </View>
+
 
                 {/* Terms of service  */}
                 <View style={styles.checkboxView}>
@@ -230,17 +277,16 @@ export default function RegisterScreen() {
                 </TouchableOpacity>
 
 
-           </KeyboardAvoidingView>
+                {/* Login text  */}
+                <View  style={styles.registerView}>
+
+                {/* @ts-ignore: true  */}
+                <Text style={styles.registerText(textMuted)}>Already have an account?</Text>
+                <Link href={"/accounts/login"}><Text style={styles.registerLink}> Login</Text></Link>
+                </View>
 
 
-            {/* Login text  */}
-            <View  style={styles.registerView}>
-
-            {/* @ts-ignore: true  */}
-            <Text style={styles.registerText(textMuted)}>Already have an account?</Text>
-            <Link href={"/accounts/login"}><Text style={styles.registerLink}> Login</Text></Link>
-            </View>
-
+            </KeyboardAvoidingView>
 
 
         </ScrollView>

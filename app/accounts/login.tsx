@@ -159,7 +159,7 @@ export default function LoginScreen() {
               />
             </View>
 
-
+            {/* Error message  */}
             { formData.emailError && !firstValidate?
               <Text style={styles.errorMessage}>
                 <Entypo name="warning" size={16} color="#ef4444" /> { formData.emailError}
@@ -203,6 +203,7 @@ export default function LoginScreen() {
               </View>
             </View>
 
+            {/* Error message  */}
             { formData.passwordError && !firstValidate?
               <Text style={styles.errorMessage}>
                 <Entypo name="warning" size={16} color="#ef4444" /> { formData.passwordError}
