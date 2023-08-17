@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
+import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollView, TouchableOpacity, useColorScheme } from 'react-native';
 import { SafeAreaView, Text, View, TextInput } from '../../components/Themed'
 import styles from '../../constants/styles/accounts.style'
 import { Link, Stack, router } from 'expo-router'
@@ -66,7 +66,7 @@ export default function RegisterScreen() {
 
     // If all successful 
     setTimeout(() => {
-      router.push("/accounts/otp") //Move to OTP page
+      // router.push("/accounts/otp") //Move to OTP page
 
       setisDisabled(false) //Set disabled to true 
       setisLoading(false)   // Set loading to true
@@ -220,8 +220,13 @@ export default function RegisterScreen() {
 
 
                 { /* Action button  */}
-                <TouchableOpacity style={styles.actionBtn}  onPress={()=> router.push("/accounts/otp")}>
-                    <Text style={styles.btnColor}>Continue</Text>
+                <TouchableOpacity  disabled={isDisabled} style={[styles.actionBtn, isDisabled ? styles.disableBtn : {}]} onPress={()=> handleRegister()}>
+                    {
+                        isLoading ? 
+                          <ActivityIndicator size="small" color={"#fff"}/>
+                        :
+                          <Text style={styles.btnColor}>Continue</Text>
+                    }
                 </TouchableOpacity>
 
 
