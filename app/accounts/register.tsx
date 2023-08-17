@@ -7,6 +7,18 @@ import { Entypo } from '@expo/vector-icons';
 import { useState } from 'react';
 import Checkbox from 'expo-checkbox';
 
+interface iFormData {
+  username              : string;
+  email                 : string;
+  password              : string;
+  confirmPassword       : string;
+  hasErrors             : boolean;  
+  usernameError         : string;
+  emailError            : string;
+  passwordError         : string;
+  confirmPasswordError  : string;
+}
+
 
 
 
@@ -22,7 +34,23 @@ export default function RegisterScreen() {
 
   //Data
   const [showPassword, setshowPassword] = useState<boolean>(false)     
-  const [isChecked, setChecked] = useState<boolean>(false)     
+  const [isChecked, setChecked] = useState<boolean>(false)   
+
+  const [formData, setformData] = useState<iFormData>({
+      username: "",
+      email : "",
+      password : "",
+      confirmPassword : "",
+      hasErrors : false,
+      usernameError : "",
+      emailError : "",
+      passwordError : "",
+      confirmPasswordError   : "",
+    })
+
+  const [isLoading, setisLoading] = useState<boolean>(false)
+  const [isDisabled, setisDisabled] = useState<boolean>(false)
+  const [firstValidate, setfirstValidate] = useState<boolean>(true)
 
   return (
     <SafeAreaView style={[styles.safeAreaView]}>
