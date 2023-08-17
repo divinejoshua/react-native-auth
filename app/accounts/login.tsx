@@ -6,7 +6,7 @@ import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Image } from 'expo-image';
-import { LoginForm } from '../../types/login';
+
 
 export default function LoginScreen() {
 
@@ -19,13 +19,16 @@ export default function LoginScreen() {
   const borderColor = currentTheme === "light" ? Colors.light.borderColor :Colors.dark.borderColor
 
   //Data
-  const [formData, setformData] = useState<LoginForm[]>([{
-    email : "email",
-    password : "email",
-    errors : [],
-    
-  }])
+  const [formData, setformData] = useState<{}>({
+    email : "",
+    password : "",
+    hasErrors : false,
+  })
+
   const [showPassword, setshowPassword] = useState<boolean>(false)   
+  
+
+
   
   
 
