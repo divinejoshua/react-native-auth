@@ -4,7 +4,6 @@ import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { removeItem } from '../../utils/asyncStorage';
-
 // Flash message 
 import { showMessage, hideMessage } from "react-native-flash-message";
 import FlashMessage from "react-native-flash-message";

@@ -4,14 +4,16 @@ import styles from '../../constants/styles/accounts.style'
 import { Link, Stack, router } from 'expo-router'
 import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Image } from 'expo-image';
+import { validateEmailFormart } from '../../utils/validateForm';
 
-
-interface FormData {
-  email: string;
-  password: string;
-  hasErrors: boolean;
+interface iFormData {
+  email         : string;
+  password      : string;
+  hasErrors     : boolean;
+  emailError    : string;
+  passwordError : string;
 }
 
 export default function LoginScreen() {
@@ -25,21 +27,59 @@ export default function LoginScreen() {
   const borderColor = currentTheme === "light" ? Colors.light.borderColor :Colors.dark.borderColor
 
   //Data
-  const [formData, setformData] = useState<FormData>({
+  const [formData, setformData] = useState<iFormData>({
     email : "",
     password : "",
     hasErrors : false,
+    emailError : "",
+    passwordError : "",
   })
 
-  const [showPassword, setshowPassword] = useState<boolean>(false)   
+  const [showPassword, setshowPassword] = useState<boolean>(false)
+  const [isLoading, setisLoading] = useState<boolean>(false)
+  const [isDisabled, setisDisabled] = useState<boolean>(false)
+  const [firstValidate, setfirstValidate] = useState<boolean>(true)
 
-  
+
+    // Handle OTP 
+    const validateForm = () => {
+    
+      setisDisabled(true)
+
+      // Validate email format 
+      setformData((prevData) => ({
+        ...prevData,  
+        emailError: validateEmailFormart(formData.email) ? '' : 'Invalid email format', }));  //Validate email format
+
+    }
+
+  // Form validation watcher 
+  const validateFormWatcher = ()=> {
+    // If form error, sent the hasErrors to true and if no error, set hasErrors to true 
+    if (formData.emailError === "" || formData.passwordError === ""){
+      setformData((prevData) => ({...prevData, hasErrors: false, }));  //Set form has erros to false
+    } else {
+      setformData((prevData) => ({...prevData, hasErrors: true, }));     //Set iform has erros to trye
+    }
+  }
+
 
 
   const handleLogin =() =>{
-    router.push("/accounts/otp")
+    setfirstValidate(false)   //Set firstValidate to false
+    // router.push("/accounts/otp")
   }
 
+
+  // Use effect 
+  useEffect(() => {
+    
+    // Auto validate after first Validation 
+      validateForm()
+      validateFormWatcher()
+
+  }, [formData.email, formData.password])
+  
   
   
   return (
@@ -62,9 +102,6 @@ export default function LoginScreen() {
         {/* Main container  */}
         <ScrollView style={styles.container}>
 
-          <Text>{formData.email}</Text>
-          <Text>{formData.password}</Text>
-          
           {/* Page title  */}
           <Text style={styles.pageTitle}>Login</Text>
           {/* @ts-ignore : true  */}
@@ -96,6 +133,12 @@ export default function LoginScreen() {
                 textContentType="emailAddress"
               />
             </View>
+
+            { formData.hasErrors ===true && !firstValidate?
+              <Text style={styles.errorMessage}>
+                <Entypo name="warning" size={16} color="#ef4444" />{ formData.emailError}
+              </Text> : ""
+            }
 
              {/* Password  */}
              <View style={styles.formView}>
