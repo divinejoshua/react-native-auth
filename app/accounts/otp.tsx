@@ -96,7 +96,7 @@ export default function OtpScreen() {
       // Show flash message 
       showMessage({
         message: "OTP resent successfully",
-        description: "We have resent a 5 digit OTP to your email",
+        description: "We have sent a new 5 digit OTP to your email",
         type: "success",
         backgroundColor: "#22c55e", // background color
       });
@@ -184,7 +184,7 @@ export default function OtpScreen() {
 
               {/* Resend OTP  */}
               <TouchableOpacity onPress={()=> resendOTP()}>
-                <Text style={styles.resendCode}>Send code again </Text>
+                <Text style={styles.resendCode}>Resend code </Text>
               </TouchableOpacity>
 
 
