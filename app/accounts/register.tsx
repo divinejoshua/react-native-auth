@@ -6,7 +6,7 @@ import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import Checkbox from 'expo-checkbox';
-import { validateEmailFormat } from '../../utils/validateForm';
+import { validateEmailFormat, validatePasswordFormat } from '../../utils/validateForm';
 
 interface iFormData {
   username              : string;
@@ -65,7 +65,7 @@ export default function RegisterScreen() {
       // Validate password [required ]
       setformData((prevData) => ({
         ...prevData,  
-        passwordError: formData.password ? "" : 'Password is required', 
+        passwordError: validatePasswordFormat(formData.password)?  "" : 'Password Must contain at least 6 character with at least one number and at least one special character', 
       }));  //Validate password required
 
     }
@@ -102,6 +102,8 @@ export default function RegisterScreen() {
     // Auto validate after first Validation 
       validateForm()
       // validateFormWatcher()
+
+      console.log(validatePasswordFormat(formData.password))
 
   }, [formData.email, formData.password, formData.emailError, formData.passwordError, formData.hasErrors])
   
