@@ -6,7 +6,6 @@ import Colors from '../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Image } from 'expo-image';
-import { LoginForm } from '../../types/login';
 
 
 export default function LoginScreen() {
@@ -20,10 +19,14 @@ export default function LoginScreen() {
   const borderColor = currentTheme === "light" ? Colors.light.borderColor :Colors.dark.borderColor
 
   //Data
-  const [formData, setformData] = useState<LoginForm[]>([])
   const [showPassword, setshowPassword] = useState<boolean>(false)     
 
 
+  const handleLogin =() =>{
+    router.push("/accounts/otp")
+  }
+
+  
   
   return (
     <SafeAreaView style={[styles.safeAreaView]}>
@@ -108,7 +111,7 @@ export default function LoginScreen() {
 
 
             {/* Action button  */}
-              <TouchableOpacity style={styles.actionBtn}  onPress={()=> router.push("/accounts/otp")}>
+              <TouchableOpacity style={styles.actionBtn}  onPress={()=> handleLogin()}>
                 <Text style={styles.btnColor}>Continue</Text>
               </TouchableOpacity>
 
