@@ -16,7 +16,7 @@ export default function GetStartedScreen() {
         {/* App Name  */}
         <Text style={styles.nameText}>Wetrospace</Text>
 
-      {/* Bottom view  */}
+      {/* Bottom view     */}
         <LinearGradient colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,0.3)']} style={styles.bottomView}>
 
           {/* Hero text  */}
