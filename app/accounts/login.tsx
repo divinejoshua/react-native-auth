@@ -7,7 +7,7 @@ import { Entypo } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { Image } from 'expo-image';
 import { validateEmailFormat } from '../../utils/validateForm';
-import axios from '../../api/axios';
+import { useAuth } from '../../context/AuthContext';
 
 interface iFormData {
   email         : string;
@@ -40,6 +40,10 @@ export default function LoginScreen() {
   const [isLoading, setisLoading] = useState<boolean>(false)
   const [isDisabled, setisDisabled] = useState<boolean>(false)
   const [firstValidate, setfirstValidate] = useState<boolean>(true)
+  const [serverErrorMessage, setserverErrorMessage] = useState<string>("")
+
+  //Authentication
+  const { onLogin } = useAuth()
 
 
     // Handle OTP 
@@ -86,11 +90,8 @@ export default function LoginScreen() {
 
     // If all successful 
     setTimeout(() => {
-      onLogin()
-      router.push("/accounts/otp") //Move to OTP page
-
-      setisDisabled(false) //Set disabled to true 
-      setisLoading(false)   // Set loading to true
+      loginUser()
+      
 
       
 
@@ -100,21 +101,41 @@ export default function LoginScreen() {
   }
 
   // On login to server 
-  const onLogin = async () =>{
+  const loginUser = async () =>{
     try {
-      const accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNTI5MzAzLCJpYXQiOjE2OTI1Mjg3MDMsImp0aSI6ImY5ZWRiMDI1Y2I3MDRlNmE5ZDUxZWQ0ZjU5YzVmYzhkIiwidXNlcl9pZCI6NX0.UbQZW_fy_oyBUlXK0oH10MJ0yj949gqZaACEuENOdBo'; // Replace with your actual access token
-      const response = await axios.get('/accounts/check/', 
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      });
-  
-      // Handle the response
-      console.log('Response:', response.data);
-    } catch (error) {
+
+      // Login user with the data 
+      let response = await onLogin(formData.email, formData.password)
+
+      // If response is 200 
+      if (response.status === 200){
+
+        router.push("/accounts/otp") //Move to OTP page
+
+        // console.log(response.data)
+      }
+
+      // If response is 400 
+      if (response.status === 400) {
+        
+        //@ts-ignore: true
+        // setServersError(error.data.non_field_errors)
+        console.log(error.data)
+      }
+
+    } catch (error : any) {
       // Handle error
+      // setServersError(error.data.non_field_errors)
       console.error('Error:', error);
+    }
+
+
+    // On finally 
+    finally {
+
+        setisDisabled(false) //Set disabled to true 
+        setisLoading(false)   // Set loading to true
+
     }
   }
 
@@ -237,6 +258,14 @@ export default function LoginScreen() {
             {/* Forgot password  */}
             {/* @ts-ignore */}
             <Text style={styles.forgotPassword(textMuted)}>Forgot password?</Text>
+
+
+             {/* Error message  */}
+             { formData.passwordError && !firstValidate?
+              <Text style={styles.errorMessage}>
+                <Entypo name="warning" size={16} color="#ef4444" /> { formData.passwordError}
+              </Text> : ""
+            }
 
 
             {/* Action button  */}

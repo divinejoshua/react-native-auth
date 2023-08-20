@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
+import { AuthProvider } from '../context/AuthContext';
 
 
 export {
@@ -61,17 +62,19 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+      <AuthProvider>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
 
-        {/* Accounts  */}
-        <Stack.Screen name="accounts/getstarted" options={{ headerShown: false }} />
-        <Stack.Screen name="accounts/onboarding" options={{ headerShown: false }} />
-        <Stack.Screen name="accounts/login" />
-        <Stack.Screen name="accounts/register" />
-        <Stack.Screen name="accounts/otp" options={{ presentation: 'modal' }} />
-      </Stack>
+          {/* Accounts  */}
+          <Stack.Screen name="accounts/getstarted" options={{ headerShown: false }} />
+          <Stack.Screen name="accounts/onboarding" options={{ headerShown: false }} />
+          <Stack.Screen name="accounts/login" />
+          <Stack.Screen name="accounts/register" />
+          <Stack.Screen name="accounts/otp" options={{ presentation: 'modal' }} />
+        </Stack>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

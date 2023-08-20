@@ -9,7 +9,7 @@ interface AuthProps {
     onLogout: (token : string) => Promise<any>
 }
 
-const TOKEN_KEY : string = ""  //Token key from expo secure store
+const TOKEN_KEY : string = "jwt-token"  //Token key from expo secure store
 
 // Create context 
 const AuthContext = createContext<AuthProps>({
@@ -47,7 +47,7 @@ export const AuthProvider = ({children} : any) => {
         // Attempt 
         try {
             // @ts-ignore 
-            let response = await axios.get('/accounts/check/', { username, password });
+            let response = await axios.post('/accounts/auth/login/', { username, password });
 
             console.log (response.data)
 
