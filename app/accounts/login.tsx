@@ -102,9 +102,8 @@ export default function LoginScreen() {
   // On login to server 
   const onLogin = async () =>{
     try {
-      const accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNDQxNjY5LCJpYXQiOjE2OTI0NDEwNjksImp0aSI6IjhmYjVmMzZlYzlhZDQxMGViOTMyMWQ3NWJhOGRkMTI5IiwidXNlcl9pZCI6MX0.buA8U9def-GqUGpkoULsDY1ca7nIEvXSkc5bS4bbdfk'; // Replace with your actual access token
-      const response = await axios.post('http://localhost:8000/accounts/check/', {
-      },
+      const accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNTI5MzAzLCJpYXQiOjE2OTI1Mjg3MDMsImp0aSI6ImY5ZWRiMDI1Y2I3MDRlNmE5ZDUxZWQ0ZjU5YzVmYzhkIiwidXNlcl9pZCI6NX0.UbQZW_fy_oyBUlXK0oH10MJ0yj949gqZaACEuENOdBo'; // Replace with your actual access token
+      const response = await axios.get('https://django-jwt.onrender.com/accounts/check/', 
       {
         headers: {
           Authorization: `Bearer ${accessToken}`
