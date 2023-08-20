@@ -7,6 +7,7 @@ import { Entypo } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { Image } from 'expo-image';
 import { validateEmailFormat } from '../../utils/validateForm';
+import axios from 'axios';
 
 interface iFormData {
   email         : string;
@@ -85,14 +86,38 @@ export default function LoginScreen() {
 
     // If all successful 
     setTimeout(() => {
+      onLogin()
       router.push("/accounts/otp") //Move to OTP page
 
       setisDisabled(false) //Set disabled to true 
       setisLoading(false)   // Set loading to true
 
+      
+
     }, 2000);
 
 
+  }
+
+  // On login to server 
+  const onLogin = async () =>{
+    try {
+      
+      const accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNDQxNjY5LCJpYXQiOjE2OTI0NDEwNjksImp0aSI6IjhmYjVmMzZlYzlhZDQxMGViOTMyMWQ3NWJhOGRkMTI5IiwidXNlcl9pZCI6MX0.buA8U9def-GqUGpkoULsDY1ca7nIEvXSkc5bS4bbdfk'; // Replace with your actual access token
+      const response = await axios.post('http://localhost:8000/accounts/check/', {
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+  
+      // Handle the response
+      console.log('Response:', response.data);
+    } catch (error) {
+      // Handle error
+      console.error('Error:', error);
+    }
   }
 
 
