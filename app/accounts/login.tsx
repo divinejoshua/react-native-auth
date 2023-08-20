@@ -102,7 +102,6 @@ export default function LoginScreen() {
   // On login to server 
   const onLogin = async () =>{
     try {
-      
       const accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNDQxNjY5LCJpYXQiOjE2OTI0NDEwNjksImp0aSI6IjhmYjVmMzZlYzlhZDQxMGViOTMyMWQ3NWJhOGRkMTI5IiwidXNlcl9pZCI6MX0.buA8U9def-GqUGpkoULsDY1ca7nIEvXSkc5bS4bbdfk'; // Replace with your actual access token
       const response = await axios.post('http://localhost:8000/accounts/check/', {
       },
