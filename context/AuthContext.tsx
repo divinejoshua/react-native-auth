@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import axios from "../api/axios";
 import * as SecureStore from 'expo-secure-store';
 
@@ -51,6 +51,7 @@ export const AuthProvider = ({children} : any) => {
 
             console.log (response.data)
 
+            // Set the authstate 
             setauthState({
                 token : response.data.access_token
             })
@@ -72,12 +73,47 @@ export const AuthProvider = ({children} : any) => {
     }
 
     // Logout function 
-    // const logout 
+    const logout = async () => {
+        // Set the access token to null
+        axios.defaults.headers.common['Authorization'] = null
 
+        //Delete the access token to expo secure store 
+        await SecureStore.deleteItemAsync(TOKEN_KEY)
+
+        // Set the auth state to null
+        setauthState({
+            token : null
+        })
+    }
+
+
+    // Get token from expo secure store 
+    const loadToken = async () => {
+        const token = await SecureStore.getItemAsync(TOKEN_KEY)
+
+        console.log(token)
+
+        if(token) {
+            // Set the access token as the authorisation data 
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+        }
+    }
+
+
+    useEffect(() => {
+        // Load the token from expo secure store
+        loadToken()
+    }, [])
+    
 
 
     // Context value 
-    const contextValue = {}
+    const contextValue = {
+        onLogin     : login,
+        onLogout    : logout,
+        authState   : authState,
+
+    }
 
     // @ts-ignore
     return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
