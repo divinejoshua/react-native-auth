@@ -7,7 +7,7 @@ import { Entypo } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { Image } from 'expo-image';
 import { validateEmailFormat } from '../../utils/validateForm';
-import axios from 'axios';
+import axios from '../../api/axios';
 
 interface iFormData {
   email         : string;
@@ -103,7 +103,7 @@ export default function LoginScreen() {
   const onLogin = async () =>{
     try {
       const accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkyNTI5MzAzLCJpYXQiOjE2OTI1Mjg3MDMsImp0aSI6ImY5ZWRiMDI1Y2I3MDRlNmE5ZDUxZWQ0ZjU5YzVmYzhkIiwidXNlcl9pZCI6NX0.UbQZW_fy_oyBUlXK0oH10MJ0yj949gqZaACEuENOdBo'; // Replace with your actual access token
-      const response = await axios.get('https://django-jwt.onrender.com/accounts/check/', 
+      const response = await axios.get('/accounts/check/', 
       {
         headers: {
           Authorization: `Bearer ${accessToken}`
