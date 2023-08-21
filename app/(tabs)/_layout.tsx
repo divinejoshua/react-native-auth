@@ -7,10 +7,12 @@ import Colors from '../../constants/Colors';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 
-import { getItem } from '../../utils/asyncStorage';
-import OnboardingScreen from '../accounts/onboarding';
+import * as SecureStore from 'expo-secure-store';
+
 
 import { Redirect } from "expo-router";
+
+
 
 
 /**
@@ -32,12 +34,12 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
 
 
-  // Check if the user is already onboarded 
-  const checkIfAlreadyOnboarded = async ()=>{
-    let onboarded = await getItem('onboarded');
+  // Check if the user is logged in
+  const userIsLoggedin = async ()=>{
+    const loggedInToken = await SecureStore.getItemAsync("jwt-token")
 
-    // Check for onboarded status on async storage 
-    if(onboarded!=='1'){
+    // Check for onboarded status on expo secure store
+    if(!loggedInToken){
         setShowOnboarding(true); //Show onboarding
       } else {
         setShowOnboarding(false); //Proceed to tab pages
@@ -47,7 +49,7 @@ export default function TabLayout() {
   useEffect(()=>{
 
     // Check if alreay onboarded 
-    checkIfAlreadyOnboarded();
+    userIsLoggedin();
 
   },[])
 

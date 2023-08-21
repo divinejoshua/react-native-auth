@@ -108,11 +108,12 @@ export default function LoginScreen() {
           "password"  :formData.password 
         }
       );
-
-      console.log (response.status)
-
+      
       // If response is 200 
       if (response.status === 200){
+
+        // Set the access token in expo secure store 
+        onSetToken(response.data.access_token);
 
         router.push("/accounts/otp") //Move to OTP page
 
