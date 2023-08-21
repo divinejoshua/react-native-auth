@@ -9,6 +9,8 @@ import { showMessage, hideMessage } from "react-native-flash-message";
 import FlashMessage from "react-native-flash-message";
 import { Feather } from '@expo/vector-icons';
 import { useAuth } from '../../context/AuthContext';
+import axios from '../../api/axios';
+import { useEffect, useState } from 'react';
 
 
 
@@ -17,8 +19,22 @@ export default function TabOneScreen() {
   //Authenticaton
   const { onLogout } = useAuth()
 
+  // Data 
+  const [userDetails, setUserDetails] = useState<object>({})
 
-  // Clear async Storage 
+
+  // Get the logged in user 
+  const getLoggedInUser = async () => {
+    let response = await axios.get('/accounts/check/');
+
+    setUserDetails(response.data);
+
+  }
+
+
+
+
+  // Show Flash message
   const showFlashMessage = () =>{
 
 
@@ -31,6 +47,16 @@ export default function TabOneScreen() {
     });
   }
 
+
+  // Use effect 
+  useEffect(() => {
+    
+    // Get logged in user 
+    getLoggedInUser()
+  
+  }, [])
+  
+
  
 
 
@@ -40,10 +66,12 @@ export default function TabOneScreen() {
       {/* Flash message  */}
       <FlashMessage position="top" style={{marginTop : -40}}/>
 
-      <Text style={styles.title}>Welcome back Divine</Text>
+        {/* @ts-ignore: true */}
+      <Text style={styles.title}>Welcome back, {userDetails.username}</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
 
-      <Text style={{marginBottom:20, fontSize : 16}}>Logged is as <Text style={{ color : "#3b82f6"}}>divine@email.com</Text></Text>
+        {/* @ts-ignore : true  */}
+      <Text style={{marginBottom:20, fontSize : 16}}>Logged is as <Text style={{ color : "#3b82f6"}}>{userDetails.email}</Text></Text>
 
 
       <EditScreenInfo path="app/(tabs)/index.tsx"/>
