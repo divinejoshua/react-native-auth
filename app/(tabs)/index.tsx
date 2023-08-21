@@ -15,8 +15,6 @@ export default function TabOneScreen() {
   // Clear async Storage 
   const showFlashMessage = () =>{
 
-    // Remove Item from AsyncStorage
-    removeItem("onboarded")
 
     // Show flash message 
     showMessage({
@@ -50,7 +48,6 @@ export default function TabOneScreen() {
             <Text style={{color : "#fff", fontFamily : 'QuicksandSemiBold',}}>Show flash message</Text>
         </TouchableOpacity>
 
-      <Text style={{ padding : 20, textAlign : 'center'}}>By clearing async storage, you will be able to see the onboarding / accounts screen when next you reload the app</Text>
 
     </View>
   );
