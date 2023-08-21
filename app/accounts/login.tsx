@@ -92,15 +92,7 @@ export default function LoginScreen() {
     setisLoading(true)   // Set loading to true
 
     // If all successful 
-    setTimeout(() => {
-      loginUser()
-      
-
-      
-
-    }, 2000);
-
-
+    loginUser()
   }
 
   // On login to server 
