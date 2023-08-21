@@ -13,7 +13,7 @@ export default function TabOneScreen() {
 
 
   // Clear async Storage 
-  const clearAsyncStorage = () =>{
+  const showFlashMessage = () =>{
 
     // Remove Item from AsyncStorage
     removeItem("onboarded")
@@ -36,14 +36,18 @@ export default function TabOneScreen() {
       {/* Flash message  */}
       <FlashMessage position="top" style={{marginTop : -40}}/>
 
-      <Text style={styles.title}>Tab One</Text>
+      <Text style={styles.title}>Welcome back Divine</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+
+      <Text style={{marginBottom:20, fontSize : 16}}>Logged is as <Text style={{ color : "#3b82f6"}}>divine@email.com</Text></Text>
+
+
+      <EditScreenInfo path="app/(tabs)/index.tsx"/>
   
 
         {/* Button to remove onboarded from async storage  */}
-      <TouchableOpacity style={styles.doneButton} onPress={()=> clearAsyncStorage()}>
-            <Text style={{color : "#fff", fontFamily : 'QuicksandSemiBold',}}>Clear Async storage</Text>
+      <TouchableOpacity style={styles.doneButton} onPress={()=> showFlashMessage()}>
+            <Text style={{color : "#fff", fontFamily : 'QuicksandSemiBold',}}>Show flash message</Text>
         </TouchableOpacity>
 
       <Text style={{ padding : 20, textAlign : 'center'}}>By clearing async storage, you will be able to see the onboarding / accounts screen when next you reload the app</Text>
