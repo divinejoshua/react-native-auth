@@ -7,6 +7,7 @@ import { removeItem } from '../../utils/asyncStorage';
 // Flash message 
 import { showMessage, hideMessage } from "react-native-flash-message";
 import FlashMessage from "react-native-flash-message";
+import { Feather } from '@expo/vector-icons';
 
 
 export default function TabOneScreen() {
@@ -48,7 +49,17 @@ export default function TabOneScreen() {
             <Text style={{color : "#fff", fontFamily : 'QuicksandSemiBold',}}>Show flash message</Text>
         </TouchableOpacity>
 
-      <Text style={{marginBottom:20, fontSize : 16}}><Text style={{ color : "#3b82f6"}}>logout</Text></Text>
+
+        {/* Logout button  */}
+        <TouchableOpacity style={{marginTop:30}}>
+          <Text style={{fontSize : 17, color : "#ef4444"}}>
+            <Feather
+            name="log-out"
+            size={17}
+            color={"#ef4444"}
+            ></Feather> Logout
+          </Text>
+        </TouchableOpacity>
 
 
 
