@@ -105,6 +105,23 @@ export const AuthProvider = ({children} : any) => {
     }
 
 
+    // Axios interceptors 
+    axios.interceptors.response.use((response)=>{
+        return response
+      }, (error) => {
+
+        // if the error is 401 
+        if(error && error.response && error.response.status === 401){
+          return Promise.reject(
+
+            // Log out the user 
+            logout()
+          )
+        }
+      }) 
+
+
+
     useEffect(() => {
         // Load the token from expo secure store
         loadToken()

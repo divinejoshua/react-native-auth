@@ -26,8 +26,6 @@ export default function TabOneScreen() {
   // Get the logged in user 
   const getLoggedInUser = async () => {
 
-    console.log(axios.defaults.headers.common['Authorization'])
-
     // Get user details from server 
     try {
 
