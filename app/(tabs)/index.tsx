@@ -10,14 +10,14 @@ import FlashMessage from "react-native-flash-message";
 import { Feather } from '@expo/vector-icons';
 import { useAuth } from '../../context/AuthContext';
 import axios from '../../api/axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 
 
 export default function TabOneScreen() {
 
   //Authenticaton
-  const { onLogout } = useAuth()
+  const { onLogout, authState } = useAuth()
 
   // Data 
   const [userDetails, setUserDetails] = useState<object>({})
@@ -25,9 +25,21 @@ export default function TabOneScreen() {
 
   // Get the logged in user 
   const getLoggedInUser = async () => {
-    let response = await axios.get('/accounts/check/');
 
-    setUserDetails(response.data);
+    console.log(axios.defaults.headers.common['Authorization'])
+
+    // Get user details from server 
+    try {
+
+      let response = await axios.get('/accounts/check/');
+      setUserDetails(response.data);
+    } 
+
+    catch (error) {
+      console.log(error);
+    }
+
+
 
   }
 
@@ -49,12 +61,14 @@ export default function TabOneScreen() {
 
 
   // Use effect 
-  useEffect(() => {
-    
+  useLayoutEffect(() => {
+
     // Get logged in user 
-    getLoggedInUser()
+    if(authState.token){
+        getLoggedInUser()
+    }
   
-  }, [])
+  }, [authState])
   
 
  
