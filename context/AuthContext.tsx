@@ -110,7 +110,7 @@ export const AuthProvider = ({children} : any) => {
         return response
       }, (error) => {
 
-        // if the error is 401 
+        // if the error is 401 (Unauthorised)
         if(error && error.response && error.response.status === 401){
           return Promise.reject(
 
