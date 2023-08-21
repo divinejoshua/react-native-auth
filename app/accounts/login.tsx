@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { Image } from 'expo-image';
 import { validateEmailFormat } from '../../utils/validateForm';
 import { useAuth } from '../../context/AuthContext';
+import axios from '../../api/axios';
 
 interface iFormData {
   email         : string;
@@ -43,7 +44,7 @@ export default function LoginScreen() {
   const [serverErrorMessage, setserverErrorMessage] = useState<string>("")
 
   //Authentication
-  const { onLogin } = useAuth()
+  const { onSetToken } = useAuth()
 
 
     // Handle OTP 
@@ -61,6 +62,8 @@ export default function LoginScreen() {
         passwordError: formData.password ? "" : 'Password is required', 
       }));  //Validate password required
 
+      // Set server error to none 
+      setserverErrorMessage("")
     }
 
   // Form validation watcher 
@@ -105,7 +108,16 @@ export default function LoginScreen() {
     try {
 
       // Login user with the data 
-      let response = await onLogin(formData.email, formData.password)
+
+      // @ts-ignore 
+      let response = await axios.post('/accounts/auth/login/', 
+        { 
+          "username" : formData.email,
+          "password"  :formData.password 
+        }
+      );
+
+      console.log (response.status)
 
       // If response is 200 
       if (response.status === 200){
@@ -115,18 +127,20 @@ export default function LoginScreen() {
         // console.log(response.data)
       }
 
-      // If response is 400 
-      if (response.status === 400) {
-        
-        //@ts-ignore: true
-        // setServersError(error.data.non_field_errors)
-        console.log(error.data)
-      }
-
     } catch (error : any) {
       // Handle error
-      // setServersError(error.data.non_field_errors)
-      console.error('Error:', error);
+
+       // If response is 400 
+       if (error.response.status === 400) {
+        
+        //@ts-ignore: true
+        setserverErrorMessage(error.response.data.non_field_errors[0]) //Set the server error
+      }
+      else {
+          console.log('Error:', error);
+          //@ts-ignore: true
+          setserverErrorMessage("An error occured") //Set a generic error message
+      }
     }
 
 
@@ -260,10 +274,10 @@ export default function LoginScreen() {
             <Text style={styles.forgotPassword(textMuted)}>Forgot password?</Text>
 
 
-             {/* Error message  */}
-             { formData.passwordError && !firstValidate?
+             {/* Server Error message  */}
+             { serverErrorMessage && !firstValidate?
               <Text style={styles.errorMessage}>
-                <Entypo name="warning" size={16} color="#ef4444" /> { formData.passwordError}
+                <Entypo name="warning" size={16} color="#ef4444" /> { serverErrorMessage}
               </Text> : ""
             }
 

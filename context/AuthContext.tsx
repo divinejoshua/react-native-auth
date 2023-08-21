@@ -5,7 +5,7 @@ import * as SecureStore from 'expo-secure-store';
 
 interface AuthProps {
     authState : { token: string | null}
-    onLogin: (username: string, password : string) => Promise<any>
+    onSetToken: (token: string) => Promise<any>
     onLogout: (token : string) => Promise<any>
 }
 
@@ -16,7 +16,7 @@ const AuthContext = createContext<AuthProps>({
     authState: {
         token: null,
     },
-    onLogin: function (username: string, password: string): Promise<any> {
+    onSetToken: function (token : string): Promise<any> {
         throw new Error("Function not implemented.");
     },
     onLogout: function (token: string): Promise<any> {
@@ -41,28 +41,23 @@ export const AuthProvider = ({children} : any) => {
         token : null,
     })
 
-    // Login function 
-    const login = async (username: string, password: string) => {
+    // Set token
+    const setToken = async (token: string) => {
 
         // Attempt 
         try {
-            // @ts-ignore 
-            let response = await axios.post('/accounts/auth/login/', { username, password });
-
-            console.log (response.data)
 
             // Set the authstate 
             setauthState({
-                token : response.data.access_token
+                token : token
             })
 
             // Set the access token as the authorisation data 
-            axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
             //Set the access token to expo secure store 
-            await SecureStore.setItemAsync(TOKEN_KEY, response.data.access_token)
+            await SecureStore.setItemAsync(TOKEN_KEY, token)
 
-            return response
         }
 
         // Exception 
@@ -109,7 +104,7 @@ export const AuthProvider = ({children} : any) => {
 
     // Context value 
     const contextValue = {
-        onLogin     : login,
+        onSetToken  : setToken,
         onLogout    : logout,
         authState   : authState,
 
