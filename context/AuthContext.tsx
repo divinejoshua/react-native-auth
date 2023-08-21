@@ -106,9 +106,7 @@ export const AuthProvider = ({children} : any) => {
 
 
     // Axios interceptors 
-    axios.interceptors.response.use((response)=>{
-        return response
-      }, (error) => {
+    axios.interceptors.response.use(null, (error) => {
 
         // if the error is 401 (Unauthorised)
         if(error && error.response && error.response.status === 401){
@@ -117,6 +115,8 @@ export const AuthProvider = ({children} : any) => {
             // Log out the user 
             logout()
           )
+        } else {
+            return Promise.reject(error)
         }
       }) 
 
