@@ -1,12 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "../api/axios";
 import * as SecureStore from 'expo-secure-store';
+import { router } from "expo-router";
 
 
 interface AuthProps {
     authState : { token: string | null}
     onSetToken: (token: string) => Promise<any>
-    onLogout: (token : string) => Promise<any>
+    onLogout: () => Promise<any>
 }
 
 const TOKEN_KEY : string = "jwt-token"  //Token key from expo secure store
@@ -19,7 +20,7 @@ const AuthContext = createContext<AuthProps>({
     onSetToken: function (token : string): Promise<any> {
         throw new Error("Function not implemented.");
     },
-    onLogout: function (token: string): Promise<any> {
+    onLogout: function (): Promise<any> {
         throw new Error("Function not implemented.");
     }
 })
@@ -79,6 +80,9 @@ export const AuthProvider = ({children} : any) => {
         setauthState({
             token : null
         })
+
+        // Redirect to get started page after logout
+        router.replace("/accounts/getstarted")
 
     }
 

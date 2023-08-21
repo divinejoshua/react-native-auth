@@ -8,9 +8,14 @@ import { removeItem } from '../../utils/asyncStorage';
 import { showMessage, hideMessage } from "react-native-flash-message";
 import FlashMessage from "react-native-flash-message";
 import { Feather } from '@expo/vector-icons';
+import { useAuth } from '../../context/AuthContext';
+
 
 
 export default function TabOneScreen() {
+
+  //Authenticaton
+  const { onLogout } = useAuth()
 
 
   // Clear async Storage 
@@ -51,7 +56,7 @@ export default function TabOneScreen() {
 
 
         {/* Logout button  */}
-        <TouchableOpacity style={{marginTop:30}}>
+        <TouchableOpacity style={{marginTop:30}} onPress={()=> onLogout()}>
           <Text style={{fontSize : 17, color : "#ef4444"}}>
             <Feather
             name="log-out"
