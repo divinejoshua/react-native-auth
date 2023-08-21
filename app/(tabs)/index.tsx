@@ -48,6 +48,9 @@ export default function TabOneScreen() {
             <Text style={{color : "#fff", fontFamily : 'QuicksandSemiBold',}}>Show flash message</Text>
         </TouchableOpacity>
 
+      <Text style={{marginBottom:20, fontSize : 16}}><Text style={{ color : "#3b82f6"}}>logout</Text></Text>
+
+
 
     </View>
   );
