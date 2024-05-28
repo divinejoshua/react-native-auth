@@ -5,7 +5,7 @@ import React from 'react'
 import Lottie from 'lottie-react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Dimensions, Image, StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { GestureHandlerRootView, TouchableOpacity } from 'react-native-gesture-handler';
 import { router } from 'expo-router';
 
 
@@ -17,9 +17,11 @@ export default function OnboardingScreen() {
   // done button component 
   const doneButton = ({...props})=>{
     return (
+      <GestureHandlerRootView>
         <TouchableOpacity style={styles.doneButton} {...props}>
             <Text style={{color : "#fff", fontFamily : 'QuicksandBold',}}>Done</Text>
         </TouchableOpacity>
+      </GestureHandlerRootView>
     )
   }
 

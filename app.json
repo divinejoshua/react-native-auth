@@ -30,7 +30,9 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-font",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
@@ -44,7 +46,7 @@
       }
     },
     "runtimeVersion": {
-      "policy": "sdkVersion" 
+      "policy": "sdkVersion"
     },
     "updates": {
       "url": "https://u.expo.dev/19f86318-ff41-4eb5-939f-402e1fb4a1d6"
